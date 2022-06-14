@@ -4,6 +4,7 @@ import ErrorHandlerComponent from "./components/ErrorHandler/ErrorHandler.compon
 import React, { Suspense } from "react";
 import store from "./redux-flow";
 import AppRouter from "./router/AppRouter";
+import "antd/dist/antd.css";
 function App() {
   return (
     <BrowserRouter>
