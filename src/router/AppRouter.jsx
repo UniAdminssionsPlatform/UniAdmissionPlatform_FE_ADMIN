@@ -1,5 +1,6 @@
 import React from "react";
 const AppRouter = () => {
-  return <></>;
+  return <>
+  </>;
 };
 export default AppRouter;
