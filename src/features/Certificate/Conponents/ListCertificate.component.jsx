@@ -1,25 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table, Layout, Image } from "antd";
-import { useRef, useState } from "react";
+import { Button, Input, Space, Table, Layout, Image, Divider } from "antd";
 import Highlighter from "react-highlight-words";
+import ModalEditCertificateContainer from "../ModalEdit.container";
+import ModalCreateCertificateContainer from "../ModalCreate.container";
 
 const ListCertificateComponent = (props) => {
-  const { listCertificate } = props;
+  const {
+    listCertificate,
+    handleSearch,
+    searchInput,
+    handleReset,
+    searchedColumn,
+    searchText,
+  } = props;
 
-  const [searchText, setSearchText] = useState("");
-  const [searchedColumn, setSearchedColumn] = useState("");
-  const searchInput = useRef(null);
+  const { Header, Content } = Layout;
+  const [visibleEdit, setVisibleEdit] = useState(false);
+  const [visibleCreate, setVisibleCreate] = useState(false);
+  const [certificateID, setCertificateID] = useState("");
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
-    confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
+  const showModalEdit = (value) => {
+    setCertificateID(value);
+    setVisibleEdit(true);
   };
 
-  const handleReset = (clearFilters) => {
-    clearFilters();
-    setSearchText("");
+  const showModalCreate = () => {
+    setVisibleCreate(true);
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -68,19 +75,6 @@ const ListCertificateComponent = (props) => {
           >
             Reset
           </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={() => {
-              confirm({
-                closeDropdown: false,
-              });
-              setSearchText(selectedKeys[0]);
-              setSearchedColumn(dataIndex);
-            }}
-          >
-            Filter
-          </Button>
         </Space>
       </div>
     ),
@@ -120,12 +114,7 @@ const ListCertificateComponent = (props) => {
       dataIndex: "thumbnailUrl",
       key: "thumbnailUrl",
       width: "5%",
-      render: (_, {thumbnailUrl}) => (
-        <Image
-          width={50}
-          src={thumbnailUrl}
-        />
-      ),
+      render: (_, { thumbnailUrl }) => <Image width={50} src={thumbnailUrl} />,
     },
     {
       title: "Chứng chỉ",
@@ -139,22 +128,66 @@ const ListCertificateComponent = (props) => {
       dataIndex: "description",
       key: "description",
       width: "20%",
-      ...getColumnSearchProps("description"),
+    },
+    {
+      title: "Thao tác",
+      width: "20%",
+      render: (_, record) => (
+        <>
+          <Space split={<Divider type="vertical" />}>
+            <Button
+              onClick={() => showModalEdit(record.id)}
+              type="primary"
+              size="small"
+            >
+              Chỉnh sửa
+            </Button>
+            <Button type="primary" danger size="small">
+              Xóa
+            </Button>
+          </Space>
+        </>
+      ),
     },
   ];
-  const { Header, Content, Footer } = Layout;
+
   return (
     <>
       <Layout className="layout">
+        <Header></Header>
         <Content
           style={{
             padding: "0 50px",
           }}
         >
+          <Button
+            type="primary"
+            style={{ marginBottom: 10, marginTop: 10 }}
+            onClick={showModalCreate}
+          >
+            Tạo chứng chỉ
+          </Button>
           <div className="site-layout-content">
             <Table columns={columns} dataSource={listCertificate} />
           </div>
         </Content>
+        {visibleEdit === true ? (
+          <ModalEditCertificateContainer
+            certificateID={certificateID}
+            visibleEdit={visibleEdit}
+            setVisibleEdit={setVisibleEdit}
+          />
+        ) : (
+          ""
+        )}
+        {visibleCreate === true ? (
+          <ModalCreateCertificateContainer
+            visibleCreate={visibleCreate}
+            setVisibleCreate={setVisibleCreate}
+          />
+        ) : (
+          ""
+        )}
       </Layout>
     </>
   );
