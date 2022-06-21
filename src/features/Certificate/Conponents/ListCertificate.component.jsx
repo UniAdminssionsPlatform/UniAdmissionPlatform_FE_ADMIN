@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table, Layout, Image, Divider } from "antd";
+import {
+  Button,
+  Input,
+  Space,
+  Table,
+  Layout,
+  Image,
+  Divider,
+  Skeleton,
+} from "antd";
 import Highlighter from "react-highlight-words";
 import ModalEditCertificateContainer from "../ModalEdit.container";
 import ModalCreateCertificateContainer from "../ModalCreate.container";
@@ -13,6 +22,7 @@ const ListCertificateComponent = (props) => {
     handleReset,
     searchedColumn,
     searchText,
+    loading,
   } = props;
 
   const { Header, Content } = Layout;
@@ -160,16 +170,18 @@ const ListCertificateComponent = (props) => {
             padding: "0 50px",
           }}
         >
-          <Button
-            type="primary"
-            style={{ marginBottom: 10, marginTop: 10 }}
-            onClick={showModalCreate}
-          >
-            Tạo chứng chỉ
-          </Button>
-          <div className="site-layout-content">
-            <Table columns={columns} dataSource={listCertificate} />
-          </div>
+          <Skeleton active loading={loading}>
+            <Button
+              type="primary"
+              style={{ marginBottom: 10, marginTop: 10 }}
+              onClick={showModalCreate}
+            >
+              Tạo chứng chỉ
+            </Button>
+            <div className="site-layout-content">
+              <Table columns={columns} dataSource={listCertificate} />
+            </div>
+          </Skeleton>
         </Content>
         {visibleEdit === true ? (
           <ModalEditCertificateContainer

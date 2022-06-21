@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import ModalCreateCertificteConponent from "./Conponents/Modal/ModalCreate.component";
 import { createCertificate } from "../../service/CertificateService";
-import { handleNotification } from "../../notification/CreateCertificateNotification";
+import { handleCreateNotification } from "../../notification/CertificateNotification";
+import { useNavigate } from "react-router-dom";
 
 const ModalEditCertificateContainer = (props) => {
   const { visibleCreate, setVisibleCreate } = props;
 
-  const [confirmLoading, setConfirmLoading] = useState(false);
   const [imgeUrl, setImageUrl] = useState();
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleCancel = () => {
     setVisibleCreate(false);
@@ -16,22 +19,23 @@ const ModalEditCertificateContainer = (props) => {
   const create = (data) => {
     createCertificate(data)
       .then((result) => {
-        handleNotification("success");
+        handleCreateNotification("success", result.data.msg);
+        setTimeout(reload, 2000);
       })
       .catch((error) => {
-        handleNotification("error");
+        handleCreateNotification("error");
       });
+  };
+
+  const reload = () => {
+    setVisibleCreate(false);
+    window.location.reload();
   };
 
   const onFinish = (values) => {
     values.thumbnailUrl = imgeUrl;
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisibleCreate(false);
-      setConfirmLoading(false);
-    }, 2000);
+    setLoading(true);
     create(values);
-    
   };
 
   return (
@@ -39,7 +43,7 @@ const ModalEditCertificateContainer = (props) => {
       <ModalCreateCertificteConponent
         visibleCreate={visibleCreate}
         handleCancel={handleCancel}
-        confirmLoading={confirmLoading}
+        loading={loading}
         onFinish={onFinish}
         setImageUrl={setImageUrl}
       />

@@ -2,10 +2,11 @@ import React from "react";
 import ListCertificateComponent from "./Conponents/ListCertificate.component";
 import { getListCertificate } from "../../service/CertificateService";
 import { useRef, useState, useEffect } from "react";
-import { handleNotification } from "../../notification/GetListCertificateNotification";
+import { handleGetListNotification } from "../../notification/CertificateNotification";
 
 const CertificateContainer = () => {
   const [listCertificate, setListCertificate] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -18,10 +19,11 @@ const CertificateContainer = () => {
     getListCertificate()
       .then((result) => {
         setListCertificate(result.data.data.list);
-        handleNotification("success");
+        handleGetListNotification("success");
+        setLoading(false);
       })
       .catch((error) => {
-        handleNotification("error");
+        handleGetListNotification("error");
       });
   };
 
@@ -29,6 +31,7 @@ const CertificateContainer = () => {
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
+    setLoading(false);
   };
 
   const handleReset = (clearFilters) => {
@@ -47,6 +50,7 @@ const CertificateContainer = () => {
         searchedColumn={searchedColumn}
         searchText={searchText}
         searchInput={searchInput}
+        loading={loading}
       />
     </>
   );
