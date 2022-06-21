@@ -1,7 +1,7 @@
 import { Button, Upload, message } from 'antd';
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
-import { ROLE_ADMIN, TOKEN_KEY } from '../../../../constants/AppConst';
-import { UPLOAD_A_NEW_IMAGE_ENDPOINT } from '../../../../constants/Endpoints/FilesEndpoint';
+import { ROLE_ADMIN, TOKEN_KEY } from '../../../constants/AppConst';
+import { UPLOAD_A_NEW_IMAGE_ENDPOINT } from '../../../constants/Endpoints/FilesEndpoint';
 import Cookies from 'js-cookie';
 import React from 'react';
 

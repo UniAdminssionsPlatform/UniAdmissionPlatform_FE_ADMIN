@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Form, Input, Image, Spin } from "antd";
-import SingleUploadWithPreviewContainer from "../UploadImage/SingleUploadWithPreview.container";
+import SingleUploadWithPreviewContainer from "../../../../components/commons/UploadImage/SingleUploadWithPreview.container";
 
 const ModalEditCertificteConponent = (props) => {
   const {
