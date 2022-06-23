@@ -9,10 +9,12 @@ import {
   Image,
   Divider,
   Skeleton,
+  Modal,
 } from "antd";
 import Highlighter from "react-highlight-words";
 import ModalEditCertificateContainer from "../ModalEdit.container";
 import ModalCreateCertificateContainer from "../ModalCreate.container";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 const ListCertificateComponent = (props) => {
   const {
@@ -23,9 +25,10 @@ const ListCertificateComponent = (props) => {
     searchedColumn,
     searchText,
     loading,
+    handleDelete,
   } = props;
 
-  const { Header, Content } = Layout;
+  const { Header, Content, Footer } = Layout;
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [visibleCreate, setVisibleCreate] = useState(false);
   const [certificateID, setCertificateID] = useState("");
@@ -37,6 +40,20 @@ const ListCertificateComponent = (props) => {
 
   const showModalCreate = () => {
     setVisibleCreate(true);
+  };
+
+  const confirmDelete = (value) => {
+    console.log("value: ", value);
+    // Modal.confirm({
+    //   title: "Xác thực",
+    //   icon: <ExclamationCircleOutlined />,
+    //   content: "Xóa chứng chỉ này khỏi hệ thống ?",
+    //   okText: "Xóa",
+    //   cancelText: "Đóng",
+    //   // onOk: () => {
+    //   //   handleDelete(value);
+    //   // },
+    // });
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -142,7 +159,7 @@ const ListCertificateComponent = (props) => {
     {
       title: "Thao tác",
       width: "20%",
-      render: (_, record) => (
+      render: (record) => (
         <>
           <Space split={<Divider type="vertical" />}>
             <Button
@@ -152,7 +169,12 @@ const ListCertificateComponent = (props) => {
             >
               Chỉnh sửa
             </Button>
-            <Button type="primary" danger size="small">
+            <Button
+              onClick={() => console.log("abc")}
+              type="primary"
+              danger
+              size="small"
+            >
               Xóa
             </Button>
           </Space>
@@ -179,10 +201,15 @@ const ListCertificateComponent = (props) => {
               Tạo chứng chỉ
             </Button>
             <div className="site-layout-content">
-              <Table columns={columns} dataSource={listCertificate} />
+              <Table
+                columns={columns}
+                dataSource={listCertificate}
+                pagination={false}
+              />
             </div>
           </Skeleton>
         </Content>
+        <Footer></Footer>
         {visibleEdit === true ? (
           <ModalEditCertificateContainer
             certificateID={certificateID}

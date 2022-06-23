@@ -39,12 +39,17 @@ const CertificateContainer = () => {
     setSearchText("");
   };
 
+  const handleDelete = (id) => {
+    console.log('delete id: ', id);
+  }
+
   return (
     <>
       <ListCertificateComponent
         listCertificate={listCertificate}
         handleSearch={handleSearch}
         handleReset={handleReset}
+        handleDelete={handleDelete}
         setSearchText={setSearchText}
         setSearchedColumn={setSearchedColumn}
         searchedColumn={searchedColumn}
