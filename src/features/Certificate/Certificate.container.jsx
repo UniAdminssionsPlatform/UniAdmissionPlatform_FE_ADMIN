@@ -1,8 +1,8 @@
 import React from "react";
 import ListCertificateComponent from "./Conponents/ListCertificate.component";
-import { getListCertificate } from "../../service/CertificateService";
+import { getListCertificate, deleteCertificate } from "../../service/CertificateService";
 import { useRef, useState, useEffect } from "react";
-import { handleGetListNotification } from "../../notification/CertificateNotification";
+import { handleGetListNotification, handleDeleteNotification } from "../../notification/CertificateNotification";
 
 const CertificateContainer = () => {
   const [listCertificate, setListCertificate] = useState("");
@@ -39,8 +39,20 @@ const CertificateContainer = () => {
     setSearchText("");
   };
 
+  const deleteAPI = (id) => {
+    deleteCertificate(id).then((result) => {
+      handleDeleteNotification('success', result.data.data);
+      setLoading(true);
+      setTimeout(loadData, 2000);
+      
+    }).catch((error) => {
+      handleDeleteNotification('error');
+    })
+  }
+
   const handleDelete = (id) => {
     console.log('delete id: ', id);
+    deleteAPI(id);
   }
 
   return (

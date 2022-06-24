@@ -43,17 +43,16 @@ const ListCertificateComponent = (props) => {
   };
 
   const confirmDelete = (value) => {
-    console.log("value: ", value);
-    // Modal.confirm({
-    //   title: "Xác thực",
-    //   icon: <ExclamationCircleOutlined />,
-    //   content: "Xóa chứng chỉ này khỏi hệ thống ?",
-    //   okText: "Xóa",
-    //   cancelText: "Đóng",
-    //   // onOk: () => {
-    //   //   handleDelete(value);
-    //   // },
-    // });
+    Modal.confirm({
+      title: "Xác thực",
+      icon: <ExclamationCircleOutlined />,
+      content: "Xóa chứng chỉ này khỏi hệ thống ?",
+      okText: "Xóa",
+      cancelText: "Đóng",
+      onOk: () => {
+        handleDelete(value);
+      },
+    });
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -170,7 +169,7 @@ const ListCertificateComponent = (props) => {
               Chỉnh sửa
             </Button>
             <Button
-              onClick={() => console.log("abc")}
+              onClick={() => confirmDelete(record.id)}
               type="primary"
               danger
               size="small"

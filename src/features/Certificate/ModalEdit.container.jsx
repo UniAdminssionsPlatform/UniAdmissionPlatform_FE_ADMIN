@@ -5,21 +5,13 @@ import {
   editCertificate,
 } from "../../service/CertificateService";
 import { handleEditNotification } from "../../notification/CertificateNotification";
-import { useNavigate } from "react-router-dom";
 
 const ModalEditCertificateContainer = (props) => {
   const { certificateID, visibleEdit, setVisibleEdit } = props;
 
   const [loading, setLoading] = useState(true);
   const [certificate, setCertificate] = useState();
-  const [imgeUrl, setImageUrl] = useState({
-    uid: "-1",
-    name: "image.png",
-    status: "done",
-    url: "",
-  });
-
-  const navigate = useNavigate();
+  const [imageUrl, setImageUrl] = useState();
 
   useEffect(() => {
     loadData(certificateID);
@@ -32,7 +24,7 @@ const ModalEditCertificateContainer = (props) => {
   const loadData = (id) => {
     getDetailCertificate(id).then((result) => {
       setCertificate(result.data.data);
-      setImageUrl({ url: result.data.data.thumbnailUrl });
+      setImageUrl(result.data.data.thumbnailUrl);
       setLoading(false);
     });
   };
@@ -55,7 +47,7 @@ const ModalEditCertificateContainer = (props) => {
 
   const onFinish = (values) => {
     values.id = certificateID;
-    values.thumbnailUrl = imgeUrl.url;
+    values.thumbnailUrl = imageUrl;
     setLoading(true);
     edit(values);
   };
@@ -67,7 +59,7 @@ const ModalEditCertificateContainer = (props) => {
         handleCancel={handleCancel}
         onFinish={onFinish}
         certificate={certificate}
-        imgeUrl={imgeUrl}
+        imgeUrl={imageUrl}
         setImageUrl={setImageUrl}
         loading={loading}
       />
