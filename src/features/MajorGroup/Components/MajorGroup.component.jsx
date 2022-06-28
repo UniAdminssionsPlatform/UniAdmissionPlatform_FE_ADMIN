@@ -32,7 +32,6 @@ const MajorGroupComponent = (props) => {
     isModalVisible,
     isModalVisible2,
     handleOnClick,
-    form,
     handleCreate,
     handleDelete,
     handleEdit,
@@ -47,6 +46,7 @@ const MajorGroupComponent = (props) => {
   const [searchText, setSearchText] = useState("");
 
   const [searchedColumn, setSearchedColumn] = useState("");
+  const [form] = Form.useForm();
   const [editingRow, setEditingRow] = useState(null);
   const searchInput = useRef(null);
   const [page, setPage] = useState(1);
@@ -90,8 +90,6 @@ const MajorGroupComponent = (props) => {
     setPage(page);
     setPageSize(pageSize);
   };
-
-  const EditableContext = React.createContext(null);
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -252,24 +250,26 @@ const MajorGroupComponent = (props) => {
               <Spin style={styleSpin} />
             ) : (
               <Modal
-                okButtonProps={{
-                  form: "edit-majorgroup-form",
-                  key: "submit",
-                  htmlType: "submit",
-                }}
                 title="Chỉnh sửa nhóm ngành"
                 visible={isModalVisible2}
-                // onOk={handleOk}
+                onOk={() => {
+                  form.validateFields().then((values) => {
+                    console.log(values);
+                    onFinish(values);
+                    form.resetFields();
+                  });
+                }}
                 onCancel={handleCancel2}
                 okText="Chỉnh sửa"
                 cancelText="Đóng"
               >
                 <Form
                   fields={field}
-                  onFinish={onFinish}
+                  // onFinish={onFinish}
                   id="edit-majorgroup-form"
-                  name="edit"
+                  name="basic"
                   layout="vertical"
+                  form={form}
                 >
                   <Form.Item label="Tên :" name="name">
                     <Input />
@@ -277,7 +277,7 @@ const MajorGroupComponent = (props) => {
                   <Form.Item label="Mô tả :" name="description">
                     <TextArea autoSize={true} />
                   </Form.Item>
-                  <lable>Hình ảnh :</lable>
+                  <lable>Hình ảnh : </lable>
                   <div style={styleImageModalEdit}>
                     <Image
                       width={450}
@@ -288,7 +288,7 @@ const MajorGroupComponent = (props) => {
                   <Form.Item name="thumbnailUrl">
                     <SingleUploadWithPreviewContainer
                       imageUrlEdit={imageUrlEdit}
-                      setImageUrlEdit={setImageUrlEdit}
+                      setImageUrl={setImageUrlEdit}
                     />
                   </Form.Item>
                 </Form>
@@ -310,23 +310,21 @@ const MajorGroupComponent = (props) => {
             padding: "0 50px",
           }}
         >
-          <Form form={form}>
-            <>
-              <Table
-                columns={columns}
-                dataSource={majorGroup}
-                pagination={false}
+          <>
+            <Table
+              columns={columns}
+              dataSource={majorGroup}
+              pagination={false}
+            />
+            <div style={stylePaging}>
+              <Pagination
+                showSizeChanger
+                defaultCurrent={page}
+                pageSize={pageSize}
+                onChange={onChange}
               />
-              <div style={stylePaging}>
-                <Pagination
-                  showSizeChanger
-                  defaultCurrent={page}
-                  pageSize={pageSize}
-                  onChange={onChange}
-                />
-              </div>
-            </>
-          </Form>
+            </div>
+          </>
           <div>
             <Button
               type="primary"
@@ -335,7 +333,7 @@ const MajorGroupComponent = (props) => {
             >
               Tạo một nhóm ngành mới
             </Button>
-            <Modal
+            {/* <Modal
               okButtonProps={{
                 form: "add-certificate-form",
                 key: "submit",
@@ -349,15 +347,12 @@ const MajorGroupComponent = (props) => {
               cancelText="Đóng"
             >
               <Form
-                // form={form}
                 initialValues={{
                   remember: false,
                 }}
                 onFinish={handleCreate}
                 id="add-certificate-form"
                 name="basic"
-                // onFinish={onFinish}
-                // onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 layout="vertical"
               >
@@ -372,7 +367,7 @@ const MajorGroupComponent = (props) => {
                   <SingleUploadWithPreviewContainer setImageUrl={setImageUrl} />
                 </Form.Item>
               </Form>
-            </Modal>
+            </Modal> */}
           </div>
         </Content>
       </Layout>

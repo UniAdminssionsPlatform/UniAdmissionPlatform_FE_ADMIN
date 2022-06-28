@@ -29,9 +29,8 @@ const MajorGroupContainer = () => {
   const [majorGroup, setMajorGroup] = useState();
   const [majorGroupDetail, setMajorGroupDetail] = useState("");
   const [imageUrl, setImageUrl] = useState();
-  const [imageUrlEdit, setImageUrlEdit] = useState({
-    url: "",
-  });
+  const [majorGroupID, setMajorGroupID] = useState("");
+  const [imageUrlEdit, setImageUrlEdit] = useState();
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -61,7 +60,9 @@ const MajorGroupContainer = () => {
   //GET DETAIL MAJOR GROUP
   const getMajorGroupDetail = (majorGroupID) => {
     MajorGroupDetail(majorGroupID).then((result) => {
+      setMajorGroupID(majorGroupID);
       setMajorGroupDetail(result.data.data);
+      setImageUrlEdit(result.data.data.thumbnailUrl);
       setIsLoading(false);
     });
   };
@@ -86,8 +87,13 @@ const MajorGroupContainer = () => {
   //làm sao để truyền handleonclick vào onfinsh để lấy id
 
   const onFinish = (values) => {
-    // values.id = MajorGroupDetail(value);
-    values.thumbnailUrl = imageUrlEdit.url;
+    values.id = majorGroupID;
+    values.thumbnailUrl = imageUrlEdit;
+    // if (imageUrlEdit.url == null) {
+    //   values.thumbnailUrl = majorGroupDetail(thumbnailUrl);
+    // } else {
+    //   values.thumbnailUrl = imageUrlEdit.url;
+    // }
     setIsLoading(true);
     edit(values);
   };
