@@ -13,29 +13,29 @@ import {
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import Highlighter from "react-highlight-words";
+import ModalCreateMajorContainer from "../CreateModal.container";
+import ModalEditMajorContainer from "../EditModal.container";
 
-const TagComponent = (props) => {
-  const {
-    tags,
-    showModal,
-    handleOk,
-    handleCancel,
-    isModalVisible,
-    form,
-    handleCreate,
-    handleDelete,
-    handleEdit,
-    totalPages,
-    getListTags,
-  } = props;
+const MajorComponent = (props) => {
+  const { majors, form, handleDelete, onChange } = props;
   const [searchText, setSearchText] = useState("");
-
+  const [visibleCreate, setVisibleCreate] = useState(false);
+  const [visibleEdit, setVisibleEdit] = useState(false);
   const [searchedColumn, setSearchedColumn] = useState("");
-  const [editingRow, setEditingRow] = useState(null);
+  const [majorID, setMajorID] = useState("");
   const searchInput = useRef(null);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const { Header, Content, Footer } = Layout;
+
+  const showModalCreate = (value) => {
+    setVisibleCreate(true);
+  };
+
+  const showModalEdit = (value) => {
+    setMajorID(value);
+    setVisibleEdit(true);
+  };
 
   const stylePaging = {
     paddingTop: 20,
@@ -46,18 +46,8 @@ const TagComponent = (props) => {
     paddingLeft: 80,
   };
 
-  const onChange = (page, pageSize) => {
-    setPage(page);
-    setPageSize(pageSize);
-  };
+  console.log(majors);
 
-  const handleOnPressEnter = (e, editingRow) => {
-    const request = {
-      id: editingRow ? editingRow : "",
-      data: e.target.value ? e.target.value : "",
-    };
-    handleEdit(request);
-  };
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -166,40 +156,37 @@ const TagComponent = (props) => {
       title: "Số Thứ Tự",
       dataIndex: "name",
       key: "index",
-      width: "30%",
+      width: "5%",
       render: (value, record, index) => index + 1,
     },
     {
       title: "Tên",
       dataIndex: "name",
       key: "name",
-      width: "30%",
+      width: "20%",
       ...getColumnSearchProps("name"),
-      render: (text, record) => {
-        if (editingRow === record.id) {
-          return (
-            <Form.Item
-              name="name"
-              rules={[
-                {
-                  required: true,
-                  message: "Vui lòng nhập tên thẻ",
-                },
-              ]}
-            >
-              <Input onPressEnter={(e) => handleOnPressEnter(e, editingRow)} />
-            </Form.Item>
-          );
-        } else {
-          return <p>{text}</p>;
-        }
-      },
+    },
+    {
+      title: "Mã Ngành",
+      dataIndex: "code",
+      key: "code",
+      width: "10%",
+      ...getColumnSearchProps("code"),
+    },
+    {
+      title: "Nhóm Ngành",
+      // dataIndex: "majorGroupId",
+      // key: "majorGroupId",
+      width: "10%",
+      // ...getColumnSearchProps("majorGroupId"),
+      render: (_, record) => <div>{record.majorGroupNameViewModel.name}</div>,
     },
     {
       title: "Thao tác",
       dataIndex: "id",
+      width: "10%",
       render: (_, record) => {
-        return tags.length >= 1 ? (
+        return majors?.list.length >= 1 ? (
           <>
             <Popconfirm
               title="Bạn có chắc muốn xóa thẻ này chứ ?"
@@ -208,14 +195,9 @@ const TagComponent = (props) => {
               <a>Xóa Thẻ</a>
             </Popconfirm>
             <Button
-              style={styleButton}
               type="link"
-              onClick={() => {
-                setEditingRow(record.id);
-                form.setFieldsValue({
-                  name: record.name,
-                });
-              }}
+              style={styleButton}
+              onClick={() => showModalEdit(record.id)}
             >
               Chỉnh Sửa
             </Button>
@@ -237,62 +219,43 @@ const TagComponent = (props) => {
         >
           <Form form={form}>
             <>
-              <Table
-                columns={columns}
-                dataSource={tags}
-                pagination={false}
-              />
+              <Table columns={columns} dataSource={majors?.list} pagination={false} />
               <div style={stylePaging}>
-                <Pagination
-                  showSizeChanger
-                  defaultCurrent={page}
-                  pageSize={pageSize}
-                  onChange={onChange}
-                />
+                <Pagination total={majors.total} onChange={onChange} showSizeChanger />
               </div>
             </>
           </Form>
           <div>
             <Button
               type="primary"
-              onClick={showModal}
+              onClick={showModalCreate}
               style={{ backgroundColor: "green" }}
             >
               Tạo một thẻ mới
             </Button>
-            <Modal
-              okButtonProps={{
-                form: "add-certificate-form",
-                key: "submit",
-                htmlType: "submit",
-              }}
-              title="Thêm một thẻ mới"
-              visible={isModalVisible}
-              onOk={handleOk}
-              onCancel={handleCancel}
-              okText="Thêm"
-              cancelText="Đóng"
-            >
-              <Form
-                initialValues={{
-                  remember: false,
-                }}
-                onFinish={handleCreate}
-                id="add-certificate-form"
-                name="basic"
-                autoComplete="off"
-                layout="vertical"
-              >
-                <Form.Item label="Tên" name="name">
-                  <Input />
-                </Form.Item>
-              </Form>
-            </Modal>
           </div>
         </Content>
+        {visibleCreate === true ? (
+          <ModalCreateMajorContainer
+            visibleCreate={visibleCreate}
+            setVisibleCreate={setVisibleCreate}
+          />
+        ) : (
+          ""
+        )}
+        ,
+        {visibleEdit === true ? (
+          <ModalEditMajorContainer
+            majorID={majorID}
+            visibleEdit={visibleEdit}
+            setVisibleEdit={setVisibleEdit}
+          />
+        ) : (
+          ""
+        )}
       </Layout>
     </>
   );
 };
 
-export default TagComponent;
+export default MajorComponent;

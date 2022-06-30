@@ -84,8 +84,6 @@ const MajorGroupContainer = () => {
     window.location.reload();
   };
 
-  //làm sao để truyền handleonclick vào onfinsh để lấy id
-
   const onFinish = (values) => {
     values.id = majorGroupID;
     values.thumbnailUrl = imageUrlEdit;
@@ -103,7 +101,8 @@ const MajorGroupContainer = () => {
     DeleteMajorGroup(value)
       .then((result) => {
         handleDeleteSuccessNotification("success");
-        ListMajorGroup();
+        setTimeout(reload, 1000);
+        // ListMajorGroup();
         setIsModalVisible(false);
       })
       .catch((error) => {
@@ -118,7 +117,8 @@ const MajorGroupContainer = () => {
     CreateMajorGroup(values)
       .then((result) => {
         handleCreateSuccessNotification("success");
-        ListMajorGroup();
+        setTimeout(reload, 1000);
+        // ListMajorGroup();
         setIsModalVisible(false);
       })
       .catch((error) => {

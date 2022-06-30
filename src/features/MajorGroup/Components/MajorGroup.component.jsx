@@ -333,7 +333,7 @@ const MajorGroupComponent = (props) => {
             >
               Tạo một nhóm ngành mới
             </Button>
-            {/* <Modal
+            <Modal
               okButtonProps={{
                 form: "add-certificate-form",
                 key: "submit",
@@ -367,7 +367,7 @@ const MajorGroupComponent = (props) => {
                   <SingleUploadWithPreviewContainer setImageUrl={setImageUrl} />
                 </Form.Item>
               </Form>
-            </Modal> */}
+            </Modal>
           </div>
         </Content>
       </Layout>
