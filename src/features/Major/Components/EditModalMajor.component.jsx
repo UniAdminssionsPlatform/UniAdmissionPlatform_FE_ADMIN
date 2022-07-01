@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Form, Input, Spin, Select } from "antd";
 import { Option } from "antd/lib/mentions";
-import FormEditComponent from "./FormEdit.component";
+// import FormEditComponent from "./FormEdit.component";
 
 const ModalEditMajorConponent = (props) => {
   const {

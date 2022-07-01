@@ -1,6 +1,5 @@
 import React from "react";
 import { Modal, Form, Input, Spin, Select } from "antd";
-import { DownOutlined } from "@ant-design/icons";
 import { Option } from "antd/lib/mentions";
 
 const ModalCreateMajorConponent = (props) => {

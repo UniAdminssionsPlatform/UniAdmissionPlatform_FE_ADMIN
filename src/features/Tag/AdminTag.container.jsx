@@ -22,7 +22,19 @@ const TagContainer = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [form] = Form.useForm();
+    const [dataSearch, setDataSearch] = useState({
+        page: 1,
+        limit: 10,
+    });
     const [tags, setTags] = useState();
+
+    const onChange = (page, limit) => {
+        setDataSearch({
+            ...dataSearch,
+            page,
+            limit,
+        });
+    };
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -48,7 +60,6 @@ const TagContainer = () => {
                 window.location.reload();
                 handleUpdateSuccessNotification("success");
                 getListTags();
-                // window.location.reload();
                 setIsModalVisible(false);
             })
             .catch((error) => {
@@ -88,11 +99,11 @@ const TagContainer = () => {
 
     useEffect(() => {
         getListTags();
-    }, []);
+    }, [dataSearch]);
 
     const getListTags = () => {
-        ListTags().then((result) => {
-            setTags(result.data.data.list);
+        ListTags(dataSearch).then((result) => {
+            setTags(result.data.data);
             setIsLoading(false);
         });
     };
@@ -112,6 +123,7 @@ const TagContainer = () => {
                     handleEdit={handleEdit}
                     isModalVisible={isModalVisible}
                     form={form}
+                    onChange={onChange}
                 />
             )}
         </>

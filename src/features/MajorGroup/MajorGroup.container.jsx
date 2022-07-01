@@ -16,7 +16,7 @@ import MajorGroupComponent from "./Components/MajorGroup.component";
 import {
   CreateMajorGroup,
   DeleteMajorGroup,
-  ListMajorGroup,
+   ListMajorGroupPaging,
   MajorGroupDetail,
   UpdateMajorGroup,
 } from "../../service/MajorGroupService";
@@ -31,6 +31,18 @@ const MajorGroupContainer = () => {
   const [imageUrl, setImageUrl] = useState();
   const [majorGroupID, setMajorGroupID] = useState("");
   const [imageUrlEdit, setImageUrlEdit] = useState();
+  const [dataSearch, setDataSearch] = useState({
+    page: 1,
+    limit: 10,
+  });
+
+  const onChange = (page, limit) => {
+    setDataSearch({
+      ...dataSearch,
+      page,
+      limit,
+    });
+  };
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -87,11 +99,6 @@ const MajorGroupContainer = () => {
   const onFinish = (values) => {
     values.id = majorGroupID;
     values.thumbnailUrl = imageUrlEdit;
-    // if (imageUrlEdit.url == null) {
-    //   values.thumbnailUrl = majorGroupDetail(thumbnailUrl);
-    // } else {
-    //   values.thumbnailUrl = imageUrlEdit.url;
-    // }
     setIsLoading(true);
     edit(values);
   };
@@ -102,7 +109,6 @@ const MajorGroupContainer = () => {
       .then((result) => {
         handleDeleteSuccessNotification("success");
         setTimeout(reload, 1000);
-        // ListMajorGroup();
         setIsModalVisible(false);
       })
       .catch((error) => {
@@ -118,7 +124,6 @@ const MajorGroupContainer = () => {
       .then((result) => {
         handleCreateSuccessNotification("success");
         setTimeout(reload, 1000);
-        // ListMajorGroup();
         setIsModalVisible(false);
       })
       .catch((error) => {
@@ -130,11 +135,11 @@ const MajorGroupContainer = () => {
 
   useEffect(() => {
     getMajorGroup();
-  }, []);
+  }, [dataSearch]);
 
   const getMajorGroup = () => {
-    ListMajorGroup().then((result) => {
-      setMajorGroup(result.data.data.list);
+    ListMajorGroupPaging(dataSearch).then((result) => {
+      setMajorGroup(result.data.data);
       setIsLoading(false);
     });
   };
@@ -163,6 +168,7 @@ const MajorGroupContainer = () => {
           onFinish={onFinish}
           imageUrlEdit={imageUrlEdit}
           setImageUrlEdit={setImageUrlEdit}
+          onChange={onChange}
         />
       )}
     </>

@@ -25,6 +25,7 @@ const MajorContainer = () => {
       page,
       limit,
     });
+
   };
 
   const showModal = () => {

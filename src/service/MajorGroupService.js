@@ -7,8 +7,10 @@ import {
 } from "../constants/Endpoints/MajorGroupEndPoint";
 import { CallAPI } from "./axiosBase";
 
+export const ListMajorGroupPaging = (data) =>
+  CallAPI(`${GET_LIST_MAJOR_GROUP}?page=${data.page}&limit=${data.limit}`, "get");
 export const ListMajorGroup = (data) =>
-  CallAPI(GET_LIST_MAJOR_GROUP, "get", data);
+    CallAPI(GET_LIST_MAJOR_GROUP, "get", data);
 export const CreateMajorGroup = (data) =>
   CallAPI(CREATE_MAJOR_GROUP, "post", data);
 export const MajorGroupDetail = (data) =>

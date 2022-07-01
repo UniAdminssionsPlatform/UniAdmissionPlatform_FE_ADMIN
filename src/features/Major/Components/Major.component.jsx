@@ -4,13 +4,12 @@ import {
   Form,
   Input,
   Layout,
-  Modal,
   Pagination,
   Popconfirm,
   Space,
   Table,
 } from "antd";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import Highlighter from "react-highlight-words";
 import ModalCreateMajorContainer from "../CreateModal.container";
@@ -24,9 +23,7 @@ const MajorComponent = (props) => {
   const [searchedColumn, setSearchedColumn] = useState("");
   const [majorID, setMajorID] = useState("");
   const searchInput = useRef(null);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const { Header, Content, Footer } = Layout;
+  const { Content, Footer } = Layout;
 
   const showModalCreate = (value) => {
     setVisibleCreate(true);
@@ -74,7 +71,6 @@ const MajorComponent = (props) => {
         <Input
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
-          // value={selectedKeys[0]}
           onChange={(e) =>
             setSelectedKeys(e.target.value ? [e.target.value] : [])
           }
@@ -175,10 +171,7 @@ const MajorComponent = (props) => {
     },
     {
       title: "Nhóm Ngành",
-      // dataIndex: "majorGroupId",
-      // key: "majorGroupId",
       width: "10%",
-      // ...getColumnSearchProps("majorGroupId"),
       render: (_, record) => <div>{record.majorGroupNameViewModel.name}</div>,
     },
     {
@@ -235,6 +228,7 @@ const MajorComponent = (props) => {
             </Button>
           </div>
         </Content>
+        <Footer></Footer>
         {visibleCreate === true ? (
           <ModalCreateMajorContainer
             visibleCreate={visibleCreate}

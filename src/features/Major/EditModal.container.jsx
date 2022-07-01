@@ -6,7 +6,7 @@ import {
 import { ListMajorGroup } from "../../service/MajorGroupService";
 import { MajorDetail, UpdateMajor } from "../../service/MajorService";
 import ModalEditMajorConponent from "./Components/EditModalMajor.component";
-import FormEditComponent from "./Components/FormEdit.component";
+// import FormEditComponent from "./Components/FormEdit.component";
 
 const ModalEditMajorContainer = (props) => {
   const { majorID, visibleEdit, setVisibleEdit } = props;

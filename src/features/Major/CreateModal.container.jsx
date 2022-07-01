@@ -3,18 +3,15 @@ import {
   handleCreateFailNotification,
   handleCreateSuccessNotification,
 } from "../../notification/CreateMajor";
-import { useNavigate } from "react-router-dom";
 import ModalCreateMajorConponent from "./Components/CreateModalMajor.component";
 import { CreateMajor } from "../../service/MajorService";
 import { ListMajorGroup } from "../../service/MajorGroupService";
 
 const ModalCreateMajorContainer = (props) => {
   const { visibleCreate, setVisibleCreate } = props;
-
   const [loading, setLoading] = useState(false);
   const [majorGroupId, setMajorGroupId] = useState(1);
   const [majorGroup, setMajorGroup] = useState();
-  const navigate = useNavigate();
 
   const handleCancel = () => {
     setVisibleCreate(false);
@@ -55,7 +52,6 @@ const ModalCreateMajorContainer = (props) => {
   const getMajorGroup = () => {
     ListMajorGroup().then((result) => {
       setMajorGroup(result.data.data.list);
-      // setIsLoading(false);
     });
   };
 
