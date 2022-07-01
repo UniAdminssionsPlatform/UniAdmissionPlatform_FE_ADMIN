@@ -1,0 +1,1 @@
+export const GET_aLL_FOR_COMBOBOX = "/api/v1/universities"; 
