@@ -12,8 +12,8 @@ import {
 import React, { useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import Highlighter from "react-highlight-words";
-import ModalCreateMajorContainer from "../CreateModal.container";
-import ModalEditMajorContainer from "../EditModal.container";
+import CreateModalContainer from "../CreateModal.container";
+import EditModalContainer from "../EditModal.container";
 
 const MajorComponent = (props) => {
   const { majors, form, handleDelete, onChange } = props;
@@ -230,7 +230,7 @@ const MajorComponent = (props) => {
         </Content>
         <Footer></Footer>
         {visibleCreate === true ? (
-          <ModalCreateMajorContainer
+          <CreateModalContainer
             visibleCreate={visibleCreate}
             setVisibleCreate={setVisibleCreate}
           />
@@ -239,7 +239,7 @@ const MajorComponent = (props) => {
         )}
         ,
         {visibleEdit === true ? (
-          <ModalEditMajorContainer
+          <EditModalContainer
             majorID={majorID}
             visibleEdit={visibleEdit}
             setVisibleEdit={setVisibleEdit}

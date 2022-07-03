@@ -5,10 +5,10 @@ import {
 } from "../../notification/UpdateMajorNotification";
 import { ListMajorGroup } from "../../service/MajorGroupService";
 import { MajorDetail, UpdateMajor } from "../../service/MajorService";
-import ModalEditMajorConponent from "./Components/EditModalMajor.component";
+import EditModalMajorConponent from "./Components/EditModalMajor.component";
 // import FormEditComponent from "./Components/FormEdit.component";
 
-const ModalEditMajorContainer = (props) => {
+const EditModalContainer = (props) => {
   const { majorID, visibleEdit, setVisibleEdit } = props;
 
   const [loading, setLoading] = useState(true);
@@ -76,7 +76,7 @@ const ModalEditMajorContainer = (props) => {
 
   return (
     <>
-      <ModalEditMajorConponent
+      <EditModalMajorConponent
         visibleEdit={visibleEdit}
         handleCancel={handleCancel}
         onFinish={onFinish}
@@ -94,4 +94,4 @@ const ModalEditMajorContainer = (props) => {
     </>
   );
 };
-export default ModalEditMajorContainer;
+export default EditModalContainer;

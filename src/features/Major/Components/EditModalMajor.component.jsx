@@ -3,7 +3,7 @@ import { Modal, Form, Input, Spin, Select } from "antd";
 import { Option } from "antd/lib/mentions";
 // import FormEditComponent from "./FormEdit.component";
 
-const ModalEditMajorConponent = (props) => {
+const EditModalMajorConponent = (props) => {
   const {
     visibleEdit,
     handleCancel,
@@ -100,4 +100,4 @@ const ModalEditMajorConponent = (props) => {
     </>
   );
 };
-export default ModalEditMajorConponent;
+export default EditModalMajorConponent;

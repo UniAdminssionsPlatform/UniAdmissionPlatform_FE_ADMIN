@@ -1,7 +1,6 @@
 import {Form, Skeleton} from "antd";
 import React, {useEffect, useState} from "react";
 import {ListTags} from "../../service/GetTagService";
-import TagComponent from "./Components/AdminTag.component";
 import {
     handleCreateFailNotification,
     handleCreateSuccessNotification,
@@ -17,8 +16,9 @@ import {
     handleUpdateFailNotification,
     handleUpdateSuccessNotification,
 } from "../../notification/UpdateTagNotification";
+import AdminTagComponent from "./Components/AdminTag.component";
 
-const TagContainer = () => {
+const AdminTagContainer = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [form] = Form.useForm();
@@ -113,7 +113,7 @@ const TagContainer = () => {
             {isLoading ? (
                 <Skeleton/>
             ) : (
-                <TagComponent
+                <AdminTagComponent
                     tags={tags}
                     handleCreate={handleCreate}
                     handleDelete={handleDelete}
@@ -130,4 +130,4 @@ const TagContainer = () => {
     );
 };
 
-export default TagContainer;
+export default AdminTagContainer;

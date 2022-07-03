@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Form, Input, Spin, Select } from "antd";
 import { Option } from "antd/lib/mentions";
 
-const ModalCreateMajorConponent = (props) => {
+const CreateModalMajorConponent = (props) => {
   const {
     visibleCreate,
     loading,
@@ -78,4 +78,4 @@ const ModalCreateMajorConponent = (props) => {
     </>
   );
 };
-export default ModalCreateMajorConponent;
+export default CreateModalMajorConponent;

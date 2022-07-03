@@ -14,7 +14,7 @@ import React, {useRef, useState} from "react";
 import {Helmet} from "react-helmet";
 import Highlighter from "react-highlight-words";
 
-const TagComponent = (props) => {
+const AdminTagComponent = (props) => {
     const {
         tags,
         showModal,
@@ -281,4 +281,4 @@ const TagComponent = (props) => {
     );
 };
 
-export default TagComponent;
+export default AdminTagComponent;
