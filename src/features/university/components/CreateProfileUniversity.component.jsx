@@ -5,7 +5,7 @@ import Label from "../../../components/commons/Label/Label.component";
 import { InfoCircleOutlined, PhoneOutlined } from "@ant-design/icons";
 import SingleUploadWithPreviewContainer from "../../../components/commons/UploadImage/SingleUploadWithPreview.container";
 
-const CreateHighSchoolProfileComponent = (props) => {
+const CreateProfileUniversityComponent = (props) => {
   const {
     onChangeProvince,
     provinces,
@@ -37,7 +37,6 @@ const CreateHighSchoolProfileComponent = (props) => {
                 ]}
               >
                 <Input
-                  placeholder="Trường THPT Chu Văn An,..."
                   type="text"
                   className="mt-1"
                   suffix={
@@ -75,8 +74,8 @@ const CreateHighSchoolProfileComponent = (props) => {
                 rules={[
                   {
                     pattern: new RegExp(/^(0|\+84)(\s|\.)?\d{8,11}$/),
-                    message: 'Số điện thoại không hợp lệ !'
-                  }
+                    message: "Số điện thoại không hợp lệ !",
+                  },
                 ]}
               >
                 <Input
@@ -186,35 +185,11 @@ const CreateHighSchoolProfileComponent = (props) => {
                     />
                   </Form.Item>
                 </label>
-                <label className="block">
-                  <Label>Code học sinh</Label>
-                  <Form.Item
-                    name="highSchoolCode"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Vui lòng nhập mã trường của học sinh !",
-                      },
-                    ]}
-                  >
-                    <Input
-                      type="text"
-                      className="mt-1"
-                      placeholder="abc@gmail.com"
-                      suffix={
-                        <Tooltip title="Mã code để học sinh nhập">
-                          <InfoCircleOutlined
-                            style={{ color: "rgba(0,0,0,.45)" }}
-                          />
-                        </Tooltip>
-                      }
-                    />
-                  </Form.Item>
-                </label>
+               
                 <label className="block">
                   <Label>Code quản lí</Label>
                   <Form.Item
-                    name="highSchoolManagerCode"
+                    name="universityCode"
                     rules={[
                       {
                         required: true,
@@ -301,4 +276,4 @@ const CreateHighSchoolProfileComponent = (props) => {
     </>
   );
 };
-export default CreateHighSchoolProfileComponent;
+export default CreateProfileUniversityComponent;
