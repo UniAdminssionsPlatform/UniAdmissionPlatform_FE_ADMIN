@@ -13,6 +13,7 @@ import {
 import React, {useRef, useState} from "react";
 import {Helmet} from "react-helmet";
 import Highlighter from "react-highlight-words";
+import {handleUpdateFailNotificationBlank} from "../../../notification/UpdateTagNotification";
 
 const AdminTagComponent = (props) => {
     const {
@@ -48,7 +49,11 @@ const AdminTagComponent = (props) => {
             id: editingRow ? editingRow : "",
             data: e.target.value ? e.target.value : "",
         };
-        handleEdit(request);
+        if (request.data === "") {
+            handleUpdateFailNotificationBlank("error")
+        } else {
+            handleEdit(request)
+        }
     };
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
@@ -269,7 +274,12 @@ const AdminTagComponent = (props) => {
                                 autoComplete="off"
                                 layout="vertical"
                             >
-                                <Form.Item label="Tên" name="name">
+                                <Form.Item label="Tên" name="name" rules={[
+                                    {
+                                        required: true,
+                                        message: "Tên thẻ đang trống",
+                                    },
+                                ]}>
                                     <Input/>
                                 </Form.Item>
                             </Form>

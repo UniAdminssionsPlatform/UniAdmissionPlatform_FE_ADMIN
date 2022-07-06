@@ -12,7 +12,7 @@ import {
     Spin,
     Table,
 } from "antd";
-import React, { useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import {Helmet} from "react-helmet";
 import Highlighter from "react-highlight-words";
 import TextArea from "antd/lib/input/TextArea";
@@ -43,7 +43,7 @@ const MajorGroupComponent = (props) => {
     const [searchedColumn, setSearchedColumn] = useState("");
     const [form] = Form.useForm();
     const searchInput = useRef(null);
-    const { Content} = Layout;
+    const {Content} = Layout;
 
     const field = [
         {
@@ -252,7 +252,12 @@ const MajorGroupComponent = (props) => {
                                     layout="vertical"
                                     form={form}
                                 >
-                                    <Form.Item label="Tên :" name="name">
+                                    <Form.Item label="Tên :" name="name" rules={[
+                                        {
+                                            required: true,
+                                            message: "Tên nhóm ngành đang trống",
+                                        },
+                                    ]}>
                                         <Input/>
                                     </Form.Item>
                                     <Form.Item label="Mô tả :" name="description">
@@ -332,14 +337,24 @@ const MajorGroupComponent = (props) => {
                                 autoComplete="off"
                                 layout="vertical"
                             >
-                                <Form.Item label="Tên" name="name">
+                                <Form.Item label="Tên" name="name" rules={[
+                                    {
+                                        required: true,
+                                        message: "Tên nhóm ngành đang trống",
+                                    },
+                                ]}>
                                     <Input/>
                                 </Form.Item>
                                 <Form.Item label="Mô tả" name="description">
                                     <TextArea/>
                                 </Form.Item>
                                 <lable>Hình ảnh</lable>
-                                <Form.Item name="thumbnailUrl">
+                                <Form.Item name="thumbnailUrl" rules={[
+                                    {
+                                        required: true,
+                                        message: "Chưa có hình ảnh nhóm ngành",
+                                    },
+                                ]}>
                                     <SingleUploadWithPreviewContainer setImageUrl={setImageUrl}/>
                                 </Form.Item>
                             </Form>

@@ -9,6 +9,6 @@ export const handleCreateSuccessNotification = (msg) => {
 export const handleCreateFailNotification = (msg) => {
   notification.error({
     message: msg,
-    description: `Tạo thất bại !`,
+    description: `Tạo thất bại ( bắt buộc phải upload hình ) !`,
   });
 };
