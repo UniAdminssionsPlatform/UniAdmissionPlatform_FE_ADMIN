@@ -8,6 +8,7 @@ import HighSchoolRepresentativesPage from '../pages/accounts/HighSchoolRepresent
 import UniversityRepresentativesPage from '../pages/accounts/UniversityRepresentativesPage';
 import CreateHighSchoolProfilePage from '../pages/highSchool/CreateHighSchoolProfilePage';
 import CreateUniversityProfilePage from '../pages/university/CreateUniversityProfilePage';
+import FirstRepresentativesPage from '../pages/accounts/FirstRepresentativesPage';
 const AppRouter = () => (
   <Routes>
     <Route path={PATH.TAG} element={<TagPage />} />
@@ -17,6 +18,7 @@ const AppRouter = () => (
     <Route path={PATH.ACCOUNT_UNIVERSITY_REPRESENTATIVES} element={<UniversityRepresentativesPage />} />
     <Route path={PATH.CREATE_HIGH_SCHOOL_PROFILE} element={<CreateHighSchoolProfilePage />} />
     <Route path={PATH.CREATE_UNIVERSITY_PROFILE} element={<CreateUniversityProfilePage />} />
+    <Route path={PATH.ACCOUNT_FIRST_REPRESENTATIVES} element={<FirstRepresentativesPage />} />
   </Routes>
 );
 export default AppRouter;
