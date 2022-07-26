@@ -16,8 +16,7 @@ export const CallAPI = (
     ? configHeaders
     : {
         "content-type": "application/json",
-        "x-token": `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNCIsInJvbGUiOiJhZG1pbiIsImJ1ZmZlcl90aW1lIjoiODY0MDAiLCJleHAiOjE2NjU5NTQ0NzcsImlzcyI6InFtUGx1cyIsIm5iZiI6MTY1MDI3NDg3NywiaWF0IjoxNjUwMjc0ODc3fQ.u6oa-zIi2o24oqBMU212IhLZtSXSTYUfg1R-uQqa5ig
-        `,
+        "x-token":  token && token !== 'undefined' ? token : null,
       };
   return axios({
     method,
