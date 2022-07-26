@@ -29,7 +29,7 @@ const SearchBarComponent = (props) => {
         firstName,
         email,
         phone,
-        status: status,
+        status,
         university: schoolId
       });
     },

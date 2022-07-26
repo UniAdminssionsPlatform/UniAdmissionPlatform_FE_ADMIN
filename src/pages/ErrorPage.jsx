@@ -1,8 +1,8 @@
 import { Button, Result } from 'antd';
+import { PATH } from '../constants/Paths/Path';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import React, { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { PATH } from '../constants/Paths/Path';
 
 const ErrorPage = ({ code = 404 }) => {
   const { isAuthUser } = useSelector((state) => state.authentication);

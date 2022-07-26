@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { Button, Divider, Image, Input, Layout, Modal, Skeleton, Space, Table } from 'antd';
 import { ExclamationCircleOutlined, SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table, Layout, Image, Divider, Skeleton, Modal } from 'antd';
 import Highlighter from 'react-highlight-words';
-import ModalEditCertificateContainer from '../ModalEdit.container';
 import ModalCreateCertificateContainer from '../ModalCreate.container';
+import ModalEditCertificateContainer from '../ModalEdit.container';
+import React, { useState } from 'react';
 
 const ListCertificateComponent = (props) => {
   const { listCertificate, handleSearch, searchInput, handleReset, searchedColumn, searchText, loading, handleDelete } =

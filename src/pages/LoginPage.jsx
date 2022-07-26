@@ -1,15 +1,15 @@
-import React from 'react';
-import { Col, notification, Row, Typography } from 'antd';
-import img from '../assests/image.svg';
-import google from '../assests/Google.png';
-import { signInWithPopup, GoogleAuthProvider } from '@firebase/auth';
+import { Col, Row, Typography, notification } from 'antd';
+import { GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
+import { PATH } from '../constants/Paths/Path';
+import { ROLE_ADMIN } from '../constants/AppConst';
+import { SigninHandler } from '../redux-flow/authentication/authentication-action';
 import { auth } from '../firebase/firebaseConfig';
 import { loginByFirebase } from '../service/authService';
 import { useDispatch } from 'react-redux';
-import { SigninHandler } from '../redux-flow/authentication/authentication-action';
 import { useNavigate } from 'react-router-dom';
-import { PATH } from '../constants/Paths/Path';
-import { ROLE_ADMIN } from '../constants/AppConst';
+import React from 'react';
+import google from '../assests/Google.png';
+import img from '../assests/image.svg';
 
 const LoginPage = () => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import ModalEditCertificteConponent from './Conponents/Modal/ModalEdit.component';
-import { getDetailCertificate, editCertificate } from '../../service/CertificateService';
+import { editCertificate, getDetailCertificate } from '../../service/CertificateService';
 import { handleEditNotification } from '../../notification/CertificateNotification';
+import ModalEditCertificteConponent from './Conponents/Modal/ModalEdit.component';
+import React, { useEffect, useState } from 'react';
 
 const ModalEditCertificateContainer = (props) => {
   const { certificateID, visibleEdit, setVisibleEdit } = props;

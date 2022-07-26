@@ -1,10 +1,10 @@
-import { SearchOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Layout, Pagination, Popconfirm, Space, Table } from 'antd';
-import React, { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import Highlighter from 'react-highlight-words';
+import { SearchOutlined } from '@ant-design/icons';
 import CreateModalContainer from '../CreateModal.container';
 import EditModalContainer from '../EditModal.container';
+import Highlighter from 'react-highlight-words';
+import React, { useRef, useState } from 'react';
 
 const MajorComponent = (props) => {
   const { majors, form, handleDelete, onChange } = props;
@@ -155,8 +155,8 @@ const MajorComponent = (props) => {
       title: 'Thao tác',
       dataIndex: 'id',
       width: '10%',
-      render: (_, record) => {
-        return majors?.list.length >= 1 ? (
+      render: (_, record) =>
+        majors?.list.length >= 1 ? (
           <>
             <Popconfirm title='Bạn có chắc muốn xóa thẻ này chứ ?' onConfirm={() => handleDelete(record.id)}>
               <a>Xóa Thẻ</a>
@@ -165,8 +165,7 @@ const MajorComponent = (props) => {
               Chỉnh Sửa
             </Button>
           </>
-        ) : null;
-      }
+        ) : null
     }
   ];
   return (

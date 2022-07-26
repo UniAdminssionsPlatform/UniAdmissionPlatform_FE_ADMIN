@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Form, Image, Input, Tooltip, Select, Row, Col } from 'antd';
-import MarkdownEditorComponent from '../../../components/commons/MarkdownEditor/MarkdownEditor.component';
-import Label from '../../../components/commons/Label/Label.component';
+import { Button, Col, Form, Image, Input, Row, Select, Tooltip } from 'antd';
 import { InfoCircleOutlined, PhoneOutlined } from '@ant-design/icons';
+import Label from '../../../components/commons/Label/Label.component';
+import MarkdownEditorComponent from '../../../components/commons/MarkdownEditor/MarkdownEditor.component';
+import React, { useEffect, useState } from 'react';
 import SingleUploadWithPreviewContainer from '../../../components/commons/UploadImage/SingleUploadWithPreview.container';
 
 const CreateHighSchoolProfileComponent = (props) => {

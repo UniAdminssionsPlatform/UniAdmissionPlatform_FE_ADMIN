@@ -1,17 +1,3 @@
-import React, { useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { PATH } from '../constants/Paths/Path';
-import MajorGroupPage from '../pages/MajorGroupPage';
-import MajorPage from '../pages/MajorPage';
-import TagPage from '../pages/TagPage';
-import CertificatePage from '../pages/certificate/CertificatePage';
-import HighSchoolRepresentativesPage from '../pages/accounts/HighSchoolRepresentativesPage';
-import UniversityRepresentativesPage from '../pages/accounts/UniversityRepresentativesPage';
-import CreateHighSchoolProfilePage from '../pages/highSchool/CreateHighSchoolProfilePage';
-import CreateUniversityProfilePage from '../pages/university/CreateUniversityProfilePage';
-import FirstRepresentativesPage from '../pages/accounts/FirstRepresentativesPage';
-import { signOut } from 'firebase/auth';
-import { Button, Layout, Menu, notification, Typography } from 'antd';
 import './Layout.module.css';
 import {
   ApartmentOutlined,
@@ -22,12 +8,26 @@ import {
   TeamOutlined,
   UserAddOutlined
 } from '@ant-design/icons';
-import LoginPage from '../pages/LoginPage';
-import { useDispatch, useSelector } from 'react-redux';
-import AdminRoute from './AdminRoute';
+import { Button, Layout, Menu, Typography, notification } from 'antd';
+import { PATH } from '../constants/Paths/Path';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebaseConfig';
 import { logoutHandler } from '../redux-flow/authentication/authentication-action';
+import { signOut } from 'firebase/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import AdminRoute from './AdminRoute';
+import CertificatePage from '../pages/certificate/CertificatePage';
+import CreateHighSchoolProfilePage from '../pages/highSchool/CreateHighSchoolProfilePage';
+import CreateUniversityProfilePage from '../pages/university/CreateUniversityProfilePage';
 import ErrorPage from '../pages/ErrorPage';
+import FirstRepresentativesPage from '../pages/accounts/FirstRepresentativesPage';
+import HighSchoolRepresentativesPage from '../pages/accounts/HighSchoolRepresentativesPage';
+import LoginPage from '../pages/LoginPage';
+import MajorGroupPage from '../pages/MajorGroupPage';
+import MajorPage from '../pages/MajorPage';
+import React, { useState } from 'react';
+import TagPage from '../pages/TagPage';
+import UniversityRepresentativesPage from '../pages/accounts/UniversityRepresentativesPage';
 
 const AppRouter = () => {
   const { Header, Content, Sider } = Layout;

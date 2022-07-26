@@ -1,6 +1,6 @@
 import { Form, Input, Select } from 'antd';
-import React from 'react';
 import { Option } from 'antd/lib/mentions';
+import React from 'react';
 
 const FormEditComponent = (props) => {
   const style = {

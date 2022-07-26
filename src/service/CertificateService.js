@@ -1,11 +1,11 @@
-import { CallAPI } from './axiosBase';
 import {
-  GET_LIST_CERTIFICATE_ENDPOINT,
-  GET_DETAIL_CERTIFICATE_ENDPOINT,
   CREATE_CERTIFICATE_ENDPOINT,
+  DELETE_CERTIFICATE_ENDPOINT,
   EDIT_CERTIFICATE_ENDPOINT,
-  DELETE_CERTIFICATE_ENDPOINT
+  GET_DETAIL_CERTIFICATE_ENDPOINT,
+  GET_LIST_CERTIFICATE_ENDPOINT
 } from '../constants/Endpoints/CertificateEndpoint';
+import { CallAPI } from './axiosBase';
 
 export const getListCertificate = () => CallAPI(`${GET_LIST_CERTIFICATE_ENDPOINT}`);
 export const getDetailCertificate = (data) => CallAPI(`${GET_DETAIL_CERTIFICATE_ENDPOINT}/${data}`);

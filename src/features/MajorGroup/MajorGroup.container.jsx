@@ -1,9 +1,3 @@
-import { Form, Skeleton } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { handleCreateFailNotification, handleCreateSuccessNotification } from '../../notification/CreateMajorGroup';
-import { handleDeleteFailNotification, handleDeleteSuccessNotification } from '../../notification/DeleteMajorGroup';
-import { handleUpdateFailNotification, handleUpdateSuccessNotification } from '../../notification/UpdateMajorGroup';
-import MajorGroupComponent from './Components/MajorGroup.component';
 import {
   CreateMajorGroup,
   DeleteMajorGroup,
@@ -11,6 +5,12 @@ import {
   MajorGroupDetail,
   UpdateMajorGroup
 } from '../../service/MajorGroupService';
+import { Form, Skeleton } from 'antd';
+import { handleCreateFailNotification, handleCreateSuccessNotification } from '../../notification/CreateMajorGroup';
+import { handleDeleteFailNotification, handleDeleteSuccessNotification } from '../../notification/DeleteMajorGroup';
+import { handleUpdateFailNotification, handleUpdateSuccessNotification } from '../../notification/UpdateMajorGroup';
+import MajorGroupComponent from './Components/MajorGroup.component';
+import React, { useEffect, useState } from 'react';
 
 const MajorGroupContainer = () => {
   const [isLoading, setIsLoading] = useState(true);

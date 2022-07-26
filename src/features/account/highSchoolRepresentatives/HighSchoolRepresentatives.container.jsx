@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import HighSchoolRepresentativesComponent from './components/HighSchoolRepresentatives.component';
-import { getAllAccount, changeStatusAccount } from '../../../service/AccountRepresentatives.Service';
-import {
-  handleGetListNotification,
-  handleChangeStatusNotification
-} from '../../../notification/AccountRepresentativesNotification';
+import { changeStatusAccount, getAllAccount } from '../../../service/AccountRepresentatives.Service';
 import { getAllForCombobox } from '../../../service/HighSchoolService';
+import {
+  handleChangeStatusNotification,
+  handleGetListNotification
+} from '../../../notification/AccountRepresentativesNotification';
+import HighSchoolRepresentativesComponent from './components/HighSchoolRepresentatives.component';
+import React, { useEffect, useState } from 'react';
 
 const HighSchoolRepresentativesContainer = () => {
   const [data, setData] = useState();

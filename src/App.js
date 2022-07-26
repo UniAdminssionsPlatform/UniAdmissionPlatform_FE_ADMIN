@@ -1,10 +1,10 @@
+import 'antd/dist/antd.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import AppRouter from './router/AppRouter';
 import ErrorHandlerComponent from './components/ErrorHandler/ErrorHandler.component';
 import React, { Suspense } from 'react';
 import store from './redux-flow';
-import AppRouter from './router/AppRouter';
-import 'antd/dist/antd.css';
 function App() {
   return (
     <BrowserRouter>
