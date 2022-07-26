@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   handleUpdateFailNotification,
-  handleUpdateSuccessNotification,
-} from "../../notification/UpdateMajorNotification";
-import { ListMajorGroup } from "../../service/MajorGroupService";
-import { MajorDetail, UpdateMajor } from "../../service/MajorService";
-import EditModalMajorConponent from "./Components/EditModalMajor.component";
+  handleUpdateSuccessNotification
+} from '../../notification/UpdateMajorNotification';
+import { ListMajorGroup } from '../../service/MajorGroupService';
+import { MajorDetail, UpdateMajor } from '../../service/MajorService';
+import EditModalMajorConponent from './Components/EditModalMajor.component';
 // import FormEditComponent from "./Components/FormEdit.component";
 
 const EditModalContainer = (props) => {
@@ -40,11 +40,11 @@ const EditModalContainer = (props) => {
   const edit = (data) => {
     UpdateMajor(data)
       .then((result) => {
-        handleUpdateSuccessNotification("success");
+        handleUpdateSuccessNotification('success');
         setTimeout(reload, 2000);
       })
       .catch((err) => {
-        handleUpdateFailNotification("error");
+        handleUpdateFailNotification('error');
       });
   };
 

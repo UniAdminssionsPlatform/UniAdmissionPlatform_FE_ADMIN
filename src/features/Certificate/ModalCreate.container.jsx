@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import ModalCreateCertificteConponent from "./Conponents/Modal/ModalCreate.component";
-import { createCertificate } from "../../service/CertificateService";
-import { handleCreateNotification } from "../../notification/CertificateNotification";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import ModalCreateCertificteConponent from './Conponents/Modal/ModalCreate.component';
+import { createCertificate } from '../../service/CertificateService';
+import { handleCreateNotification } from '../../notification/CertificateNotification';
+import { useNavigate } from 'react-router-dom';
 
 const ModalEditCertificateContainer = (props) => {
   const { visibleCreate, setVisibleCreate } = props;
@@ -19,11 +19,11 @@ const ModalEditCertificateContainer = (props) => {
   const create = (data) => {
     createCertificate(data)
       .then((result) => {
-        handleCreateNotification("success", result.data.msg);
+        handleCreateNotification('success', result.data.msg);
         setTimeout(reload, 2000);
       })
       .catch((error) => {
-        handleCreateNotification("error");
+        handleCreateNotification('error');
       });
   };
 

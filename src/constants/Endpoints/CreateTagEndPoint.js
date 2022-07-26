@@ -1,1 +1,1 @@
-export const CREATE_TAGS = "/api/v1/admin/tags";
+export const CREATE_TAGS = '/api/v1/admin/tags';

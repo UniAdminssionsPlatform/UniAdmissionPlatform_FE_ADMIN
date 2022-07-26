@@ -1,10 +1,10 @@
-import { TOKEN_KEY } from "../constants/AppConst";
-import Cookies from "js-cookie";
-import axios from "axios";
+import { TOKEN_KEY } from '../constants/AppConst';
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 export const CallAPI = (
   endpoint,
-  method = "GET",
+  method = 'GET',
   body = {},
   params = {},
   configHeaders = null,
@@ -15,8 +15,8 @@ export const CallAPI = (
   const headers = configHeaders
     ? configHeaders
     : {
-        "content-type": "application/json",
-        "x-token":  token && token !== 'undefined' ? token : null,
+        'content-type': 'application/json',
+        'x-token': token && token !== 'undefined' ? token : null
       };
   return axios({
     method,
@@ -24,6 +24,6 @@ export const CallAPI = (
     headers,
     data: body,
     responseType,
-    params,
+    params
   });
 };

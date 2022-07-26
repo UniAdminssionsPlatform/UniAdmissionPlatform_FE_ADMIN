@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import CreateHighSchoolProfileComponent from "./components/CreateHighSchoolProfile.component";
-import { getListProvinces } from "../../service/ProvinceService.js";
-import { getListDistrictByProvince } from "../../service/DistrictService.js";
-import { createProfile } from "../../service/HighSchoolService";
+import React, { useEffect, useState } from 'react';
+import CreateHighSchoolProfileComponent from './components/CreateHighSchoolProfile.component';
+import { getListProvinces } from '../../service/ProvinceService.js';
+import { getListDistrictByProvince } from '../../service/DistrictService.js';
+import { createProfile } from '../../service/HighSchoolService';
 import {
   CreateSuccessNotification,
-  handleCreateFailNotification,
-} from "../../notification/CreateProfileHighSchoolNotification";
+  handleCreateFailNotification
+} from '../../notification/CreateProfileHighSchoolNotification';
 
 const CreateHighSchoolProfileContainer = () => {
   const [listProvince, setListProvince] = useState([]);
   const [listDistrict, setListDistrict] = useState([]);
 
-  const [district, setDistrict] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
-  const [value, setValue] = useState("");
+  const [district, setDistrict] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
+  const [value, setValue] = useState('');
 
   const [isDisableDistrict, setIsDisableDistrict] = useState(true);
   useEffect(() => {

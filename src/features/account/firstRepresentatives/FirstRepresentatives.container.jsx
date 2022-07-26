@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from "react";
-import FirstRepresentativesComponent from "./components/FirstRepresentatives.components";
-import {
-  getAllAccount,
-  approveAccount,
-} from "../../../service/AccountRepresentatives.Service";
-import { handleChangeStatusNotification } from "../../../notification/AccountRepresentativesNotification";
+import React, { useState, useEffect } from 'react';
+import FirstRepresentativesComponent from './components/FirstRepresentatives.components';
+import { getAllAccount, approveAccount } from '../../../service/AccountRepresentatives.Service';
+import { handleChangeStatusNotification } from '../../../notification/AccountRepresentativesNotification';
 
 const FirstRepresentativesContainer = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [dataSearch, setDataSearch] = useState({
-    firstName: "",
-    email: "",
-    phone: "",
+    firstName: '',
+    email: '',
+    phone: '',
     status: 1,
     page: 1,
-    limit: 10,
+    limit: 10
   });
   const loadData = (value) => {
     getAllAccount(value)
@@ -32,34 +29,34 @@ const FirstRepresentativesContainer = () => {
     setDataSearch({
       ...dataSearch,
       page,
-      limit,
+      limit
     });
   };
   const handleApprove = (value) => {
     approveAccount(value.id)
       .then((result) => {
-        handleChangeStatusNotification("success", `${result.data.msg}`);
+        handleChangeStatusNotification('success', `${result.data.msg}`);
         loadData({
-          "first-name": dataSearch.firstName ? dataSearch.firstName : "",
-          "email-contact": dataSearch.email ? dataSearch.email : "",
+          'first-name': dataSearch.firstName ? dataSearch.firstName : '',
+          'email-contact': dataSearch.email ? dataSearch.email : '',
           status: dataSearch.status,
-          "phone-number": dataSearch.phone ? dataSearch.phone : "",
+          'phone-number': dataSearch.phone ? dataSearch.phone : '',
           page: dataSearch.page,
-          limit: dataSearch.limit,
+          limit: dataSearch.limit
         });
       })
       .catch((error) => {
-        handleChangeStatusNotification("error", `${error.response.data.msg}`);
+        handleChangeStatusNotification('error', `${error.response.data.msg}`);
       });
   };
   useEffect(() => {
     loadData({
-      "first-name": dataSearch.firstName ? dataSearch.firstName : "",
-      "email-contact": dataSearch.email ? dataSearch.email : "",
+      'first-name': dataSearch.firstName ? dataSearch.firstName : '',
+      'email-contact': dataSearch.email ? dataSearch.email : '',
       status: dataSearch.status,
-      "phone-number": dataSearch.phone ? dataSearch.phone : "",
+      'phone-number': dataSearch.phone ? dataSearch.phone : '',
       page: dataSearch.page,
-      limit: dataSearch.limit,
+      limit: dataSearch.limit
     });
   }, [dataSearch]);
 

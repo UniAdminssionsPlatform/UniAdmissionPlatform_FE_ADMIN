@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from "react";
-import UniversityRepresentativesComponent from "./components/UniversityRepresentatives.component";
-import {
-  getAllAccount,
-  changeStatusAccount,
-} from "../../../service/AccountRepresentatives.Service";
+import React, { useState, useEffect } from 'react';
+import UniversityRepresentativesComponent from './components/UniversityRepresentatives.component';
+import { getAllAccount, changeStatusAccount } from '../../../service/AccountRepresentatives.Service';
 import {
   handleGetListNotification,
-  handleChangeStatusNotification,
-} from "../../../notification/AccountRepresentativesNotification";
-import { getAllForCombobox } from "../../../service/UniversityService";
+  handleChangeStatusNotification
+} from '../../../notification/AccountRepresentativesNotification';
+import { getAllForCombobox } from '../../../service/UniversityService';
 
 const UniversityRepresentativesContainer = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [dataSearch, setDataSearch] = useState({
-    firstName: "",
-    email: "",
-    phone: "",
-    status: "",
-    university: "",
+    firstName: '',
+    email: '',
+    phone: '',
+    status: '',
+    university: '',
     page: 1,
-    limit: 10,
+    limit: 10
   });
   const [university, setUniversity] = useState();
   const loadData = (value) => {
@@ -43,38 +40,38 @@ const UniversityRepresentativesContainer = () => {
     setDataSearch({
       ...dataSearch,
       page,
-      limit,
+      limit
     });
   };
   const handleChangeStatus = (value) => {
     changeStatusAccount(value.id)
       .then((result) => {
-        handleChangeStatusNotification("success", `${result.data.msg}`);
+        handleChangeStatusNotification('success', `${result.data.msg}`);
         loadData({
-          "first-name": dataSearch.firstName ? dataSearch.firstName : "",
-          "email-contact": dataSearch.email ? dataSearch.email : "",
-          status: dataSearch.status ? dataSearch.status : "",
-          "phone-number": dataSearch.phone ? dataSearch.phone : "",
-          "university-id": dataSearch.university ? dataSearch.university : "",
-          "role-id": "uniAdmin",
+          'first-name': dataSearch.firstName ? dataSearch.firstName : '',
+          'email-contact': dataSearch.email ? dataSearch.email : '',
+          status: dataSearch.status ? dataSearch.status : '',
+          'phone-number': dataSearch.phone ? dataSearch.phone : '',
+          'university-id': dataSearch.university ? dataSearch.university : '',
+          'role-id': 'uniAdmin',
           page: dataSearch.page,
-          limit: dataSearch.limit,
+          limit: dataSearch.limit
         });
       })
       .catch((error) => {
-        handleChangeStatusNotification("error", `${error.response.data.msg}`);
+        handleChangeStatusNotification('error', `${error.response.data.msg}`);
       });
   };
   useEffect(() => {
     loadData({
-      "first-name": dataSearch.firstName ? dataSearch.firstName : "",
-      "email-contact": dataSearch.email ? dataSearch.email : "",
-      status: dataSearch.status ? dataSearch.status : "",
-      "phone-number": dataSearch.phone ? dataSearch.phone : "",
-      "university-id": dataSearch.university ? dataSearch.university : "",
-      "role-id": "uniAdmin",
+      'first-name': dataSearch.firstName ? dataSearch.firstName : '',
+      'email-contact': dataSearch.email ? dataSearch.email : '',
+      status: dataSearch.status ? dataSearch.status : '',
+      'phone-number': dataSearch.phone ? dataSearch.phone : '',
+      'university-id': dataSearch.university ? dataSearch.university : '',
+      'role-id': 'uniAdmin',
       page: dataSearch.page,
-      limit: dataSearch.limit,
+      limit: dataSearch.limit
     });
     loadHighSchool();
   }, [dataSearch]);
