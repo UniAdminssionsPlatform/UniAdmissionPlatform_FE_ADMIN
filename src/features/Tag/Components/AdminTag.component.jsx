@@ -1,9 +1,9 @@
-import { SearchOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Layout, Modal, Pagination, Popconfirm, Space, Table } from 'antd';
-import React, { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import Highlighter from 'react-highlight-words';
+import { SearchOutlined } from '@ant-design/icons';
 import { handleUpdateFailNotificationBlank } from '../../../notification/UpdateTagNotification';
+import Highlighter from 'react-highlight-words';
+import React, { useRef, useState } from 'react';
 
 const AdminTagComponent = (props) => {
   const {
@@ -164,8 +164,8 @@ const AdminTagComponent = (props) => {
     {
       title: 'Thao tác',
       dataIndex: 'id',
-      render: (_, record) => {
-        return tags?.list.length >= 1 ? (
+      render: (_, record) =>
+        tags?.list.length >= 1 ? (
           <>
             <Popconfirm title='Bạn có chắc muốn xóa thẻ này chứ ?' onConfirm={() => handleDelete(record.id)}>
               <a>Xóa Thẻ</a>
@@ -182,8 +182,7 @@ const AdminTagComponent = (props) => {
               Chỉnh Sửa
             </Button>
           </>
-        ) : null;
-      }
+        ) : null
     }
   ];
   return (

@@ -1,10 +1,10 @@
-import { SearchOutlined } from '@ant-design/icons';
 import { Button, Form, Image, Input, Layout, Modal, Pagination, Popconfirm, Space, Spin, Table } from 'antd';
-import React, { useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import TextArea from 'antd/lib/input/TextArea';
+import React, { useRef, useState } from 'react';
 import SingleUploadWithPreviewContainer from '../../SingleUploadWithPreview.container';
+import TextArea from 'antd/lib/input/TextArea';
 
 const MajorGroupComponent = (props) => {
   const {
@@ -180,8 +180,8 @@ const MajorGroupComponent = (props) => {
       title: 'Thao tác',
       dataIndex: 'id',
       width: '5%',
-      render: (_, record) => {
-        return majorGroup?.list.length >= 1 ? (
+      render: (_, record) =>
+        majorGroup?.list.length >= 1 ? (
           <>
             <Popconfirm title='Bạn có chắc muốn xóa thẻ này chứ ?' onConfirm={() => handleDelete(record.id)}>
               <a>Xóa Thẻ</a>
@@ -242,8 +242,7 @@ const MajorGroupComponent = (props) => {
               </Modal>
             )}
           </>
-        ) : null;
-      }
+        ) : null
     }
   ];
   return (

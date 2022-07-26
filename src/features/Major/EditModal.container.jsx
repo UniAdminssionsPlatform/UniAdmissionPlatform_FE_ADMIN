@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { ListMajorGroup } from '../../service/MajorGroupService';
+import { MajorDetail, UpdateMajor } from '../../service/MajorService';
 import {
   handleUpdateFailNotification,
   handleUpdateSuccessNotification
 } from '../../notification/UpdateMajorNotification';
-import { ListMajorGroup } from '../../service/MajorGroupService';
-import { MajorDetail, UpdateMajor } from '../../service/MajorService';
 import EditModalMajorConponent from './Components/EditModalMajor.component';
+import React, { useEffect, useState } from 'react';
 // import FormEditComponent from "./Components/FormEdit.component";
 
 const EditModalContainer = (props) => {

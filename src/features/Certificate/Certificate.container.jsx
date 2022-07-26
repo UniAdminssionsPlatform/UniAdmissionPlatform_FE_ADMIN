@@ -1,7 +1,7 @@
-import { useRef, useState, useEffect } from 'react';
+import { deleteCertificate, getListCertificate } from '../../service/CertificateService';
+import { handleDeleteNotification, handleGetListNotification } from '../../notification/CertificateNotification';
+import { useEffect, useRef, useState } from 'react';
 import ListCertificateComponent from './Conponents/ListCertificate.component';
-import { getListCertificate, deleteCertificate } from '../../service/CertificateService';
-import { handleGetListNotification, handleDeleteNotification } from '../../notification/CertificateNotification';
 
 const CertificateContainer = () => {
   const [listCertificate, setListCertificate] = useState('');

@@ -1,22 +1,22 @@
+import { CreateTag } from '../../service/CreateTagService';
+import { DeleteTag } from '../../service/DeleteTagService';
 import { Form, Skeleton } from 'antd';
-import React, { useEffect, useState } from 'react';
 import { ListTags } from '../../service/GetTagService';
+import { UpdateTag } from '../../service/UpdateTagService';
 import {
   handleCreateFailNotification,
   handleCreateSuccessNotification
 } from '../../notification/CreateTagNotification';
-import { CreateTag } from '../../service/CreateTagService';
 import {
   handleDeleteFailNotification,
   handleDeleteSuccessNotification
 } from '../../notification/DeleteTagNotifification';
-import { DeleteTag } from '../../service/DeleteTagService';
-import { UpdateTag } from '../../service/UpdateTagService';
 import {
   handleUpdateFailNotification,
   handleUpdateSuccessNotification
 } from '../../notification/UpdateTagNotification';
 import AdminTagComponent from './Components/AdminTag.component';
+import React, { useEffect, useState } from 'react';
 
 const AdminTagContainer = () => {
   const [isLoading, setIsLoading] = useState(true);

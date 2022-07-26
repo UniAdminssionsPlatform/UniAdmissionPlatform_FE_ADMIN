@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import UniversityRepresentativesComponent from './components/UniversityRepresentatives.component';
-import { getAllAccount, changeStatusAccount } from '../../../service/AccountRepresentatives.Service';
-import {
-  handleGetListNotification,
-  handleChangeStatusNotification
-} from '../../../notification/AccountRepresentativesNotification';
+import { changeStatusAccount, getAllAccount } from '../../../service/AccountRepresentatives.Service';
 import { getAllForCombobox } from '../../../service/UniversityService';
+import {
+  handleChangeStatusNotification,
+  handleGetListNotification
+} from '../../../notification/AccountRepresentativesNotification';
+import React, { useEffect, useState } from 'react';
+import UniversityRepresentativesComponent from './components/UniversityRepresentatives.component';
 
 const UniversityRepresentativesContainer = () => {
   const [data, setData] = useState();

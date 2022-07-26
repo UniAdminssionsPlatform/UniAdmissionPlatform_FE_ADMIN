@@ -1,7 +1,7 @@
-import { useSelector } from 'react-redux';
-import React from 'react';
-import ErrorPage from '../pages/ErrorPage';
 import { ROLE_ADMIN } from '../constants/AppConst';
+import { useSelector } from 'react-redux';
+import ErrorPage from '../pages/ErrorPage';
+import React from 'react';
 
 const AdminRoute = ({ children }) => {
   const { user, isAuthUser } = useSelector((state) => state.authentication);

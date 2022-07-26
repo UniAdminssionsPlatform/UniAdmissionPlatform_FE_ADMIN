@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import FirstRepresentativesComponent from './components/FirstRepresentatives.components';
-import { getAllAccount, approveAccount } from '../../../service/AccountRepresentatives.Service';
+import { approveAccount, getAllAccount } from '../../../service/AccountRepresentatives.Service';
 import { handleChangeStatusNotification } from '../../../notification/AccountRepresentativesNotification';
+import FirstRepresentativesComponent from './components/FirstRepresentatives.components';
+import React, { useEffect, useState } from 'react';
 
 const FirstRepresentativesContainer = () => {
   const [data, setData] = useState();

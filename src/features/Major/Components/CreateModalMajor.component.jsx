@@ -1,6 +1,6 @@
-import React from 'react';
-import { Modal, Form, Input, Spin, Select } from 'antd';
+import { Form, Input, Modal, Select, Spin } from 'antd';
 import { Option } from 'antd/lib/mentions';
+import React from 'react';
 
 const CreateModalMajorConponent = (props) => {
   const { visibleCreate, loading, handleCancel, onFinish, handleChange, majorGroup } = props;

@@ -1,9 +1,9 @@
+import { DeleteMajor, ListMajor } from '../../service/MajorService';
 import { Form, Skeleton } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { ListMajorGroup } from '../../service/MajorGroupService';
 import { handleDeleteFailNotification, handleDeleteSuccessNotification } from '../../notification/DeleteMajor';
 import MajorComponent from './Components/Major.component';
-import { DeleteMajor, ListMajor } from '../../service/MajorService';
-import { ListMajorGroup } from '../../service/MajorGroupService';
+import React, { useEffect, useState } from 'react';
 
 const MajorContainer = () => {
   const [isLoading, setIsLoading] = useState(true);

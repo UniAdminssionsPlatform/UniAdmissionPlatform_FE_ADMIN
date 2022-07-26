@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import CreateHighSchoolProfileComponent from './components/CreateHighSchoolProfile.component';
-import { getListProvinces } from '../../service/ProvinceService.js';
-import { getListDistrictByProvince } from '../../service/DistrictService.js';
-import { createProfile } from '../../service/HighSchoolService';
 import {
   CreateSuccessNotification,
   handleCreateFailNotification
 } from '../../notification/CreateProfileHighSchoolNotification';
+import { createProfile } from '../../service/HighSchoolService';
+import { getListDistrictByProvince } from '../../service/DistrictService.js';
+import { getListProvinces } from '../../service/ProvinceService.js';
+import CreateHighSchoolProfileComponent from './components/CreateHighSchoolProfile.component';
+import React, { useEffect, useState } from 'react';
 
 const CreateHighSchoolProfileContainer = () => {
   const [listProvince, setListProvince] = useState([]);

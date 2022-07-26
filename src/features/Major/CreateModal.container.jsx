@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { handleCreateFailNotification, handleCreateSuccessNotification } from '../../notification/CreateMajor';
 import { CreateMajor } from '../../service/MajorService';
 import { ListMajorGroup } from '../../service/MajorGroupService';
+import { handleCreateFailNotification, handleCreateSuccessNotification } from '../../notification/CreateMajor';
 import CreateModalMajorConponent from './Components/CreateModalMajor.component';
+import React, { useEffect, useState } from 'react';
 
 const CreateModalContainer = (props) => {
   const { visibleCreate, setVisibleCreate } = props;

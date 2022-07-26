@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import CreateProfileUniversityComponent from './components/CreateProfileUniversity.component';
-import { getListProvinces } from '../../service/ProvinceService.js';
-import { getListDistrictByProvince } from '../../service/DistrictService.js';
-import { createProfile } from '../../service/UniversityService';
 import {
   CreateSuccessNotification,
   handleCreateFailNotification
 } from '../../notification/CreateProfileUniversityNotification';
+import { createProfile } from '../../service/UniversityService';
+import { getListDistrictByProvince } from '../../service/DistrictService.js';
+import { getListProvinces } from '../../service/ProvinceService.js';
+import CreateProfileUniversityComponent from './components/CreateProfileUniversity.component';
+import React, { useEffect, useState } from 'react';
 
 const CreateProfileUniversityContainer = () => {
   const [listProvince, setListProvince] = useState([]);

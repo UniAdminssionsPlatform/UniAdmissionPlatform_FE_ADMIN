@@ -1,21 +1,21 @@
-import React from 'react';
 import {
   Button,
-  Input,
-  Space,
-  Table,
-  Layout,
-  Image,
   Divider,
-  Skeleton,
+  Image,
+  Input,
+  Layout,
   Modal,
-  Tag,
-  Tooltip,
+  Pagination,
+  Skeleton,
+  Space,
   Switch,
-  Pagination
+  Table,
+  Tag,
+  Tooltip
 } from 'antd';
-import SearchBar from './SearchBar.component';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import React from 'react';
+import SearchBar from './SearchBar.component';
 
 const HighSchoolRepresentativesComponent = (props) => {
   const { Header, Content, Footer } = Layout;
