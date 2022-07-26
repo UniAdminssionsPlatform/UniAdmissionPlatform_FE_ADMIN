@@ -185,7 +185,6 @@ const ListCertificateComponent = (props) => {
   return (
     <>
       <Layout className="layout">
-        <Header></Header>
         <Content
           style={{
             padding: "0 50px",
@@ -204,6 +203,9 @@ const ListCertificateComponent = (props) => {
                 columns={columns}
                 dataSource={listCertificate}
                 pagination={false}
+                bordered
+                style={{ width: '100vw' }}
+                scroll={{ x: 700, y: 544 }}
               />
             </div>
           </Skeleton>

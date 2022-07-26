@@ -237,6 +237,9 @@ const AdminTagComponent = (props) => {
                                 columns={columns}
                                 dataSource={tags?.list}
                                 pagination={false}
+                                bordered
+                                style={{ width: '100vw' }}
+                                scroll={{ x: 700, y: 544 }}
                             />
                             <div style={stylePaging}>
                                 <Pagination total={tags.total} onChange={onChange} showSizeChanger/>

@@ -301,6 +301,9 @@ const MajorGroupComponent = (props) => {
                             columns={columns}
                             dataSource={majorGroup?.list}
                             pagination={false}
+                            bordered
+                            style={{ width: '100vw' }}
+                            scroll={{ x: 700, y: 544 }}T
                         />
                         <div style={stylePaging}>
                             <Pagination total={majorGroup?.total} onChange={onChange} showSizeChanger/>

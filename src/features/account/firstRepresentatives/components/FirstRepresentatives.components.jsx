@@ -100,12 +100,7 @@ const FirstRepresentativesComponent = (props) => {
   return (
     <>
       <Layout className="layout">
-        <Header></Header>
-        <Content
-          style={{
-            padding: "0 50px",
-          }}
-        >
+        <Content>
           <SearchBar
             dataSearch={dataSearch}
             setDataSearch={setDataSearch}

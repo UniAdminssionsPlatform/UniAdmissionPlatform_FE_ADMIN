@@ -1,18 +1,202 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { PATH } from "../constants/Paths/Path";
-import HomePage from "../pages/HomePage";
+import React, {useState} from "react";
+import {Route, Routes, useNavigate} from "react-router-dom";
+import {PATH} from "../constants/Paths/Path";
 import MajorGroupPage from "../pages/MajorGroupPage";
 import MajorPage from "../pages/MajorPage";
 import TagPage from "../pages/TagPage";
 import CertificatePage from "../pages/certificate/CertificatePage";
-const AppRouter = () => (
-  <Routes>
-    <Route path={PATH.TAG} element={<TagPage />} />
-    <Route path={PATH.INDEX} element={<HomePage />} />
-    <Route path={PATH.MAJOR_GROUP} element={<MajorGroupPage />} />
-    <Route path={PATH.MAJOR} element={<MajorPage />} />
-      <Route path={PATH.CERTIFICATE} element={<CertificatePage />} />
-  </Routes>
-);
+import HighSchoolRepresentativesPage from "../pages/accounts/HighSchoolRepresentativesPage";
+import UniversityRepresentativesPage from "../pages/accounts/UniversityRepresentativesPage";
+import CreateHighSchoolProfilePage from "../pages/highSchool/CreateHighSchoolProfilePage";
+import CreateUniversityProfilePage from "../pages/university/CreateUniversityProfilePage";
+import FirstRepresentativesPage from "../pages/accounts/FirstRepresentativesPage";
+import {signOut} from 'firebase/auth';
+import {Button, Layout, Menu, notification, Typography} from "antd";
+import './Layout.module.css'
+import {
+    ApartmentOutlined,
+    ContainerOutlined, StarFilled,
+    StarOutlined,
+    TagsFilled,
+    TeamOutlined,
+    UserAddOutlined
+} from "@ant-design/icons";
+import LoginPage from "../pages/LoginPage";
+import {useDispatch, useSelector} from "react-redux";
+import AdminRoute from "./AdminRoute";
+import {auth} from "../firebase/firebaseConfig";
+import {logoutHandler} from "../redux-flow/authentication/authentication-action";
+import ErrorPage from "../pages/ErrorPage";
+
+const AppRouter = () => {
+    const {Header, Content, Sider} = Layout;
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    function getItem(label, key, icon, children, type) {
+        return {
+            key,
+            icon,
+            children,
+            label,
+            type
+        };
+    }
+
+    const item = [
+        getItem('Quản lý các thẻ', '1', <TagsFilled/>),
+        getItem('Quản lý Nhóm Ngành', '2', <ApartmentOutlined/>),
+        getItem('Quản lý Ngành', '3', <ApartmentOutlined/>),
+        getItem('Quản lý Chứng chỉ', '4', <StarOutlined/>),
+        getItem('Quản lý Tài khoản', '5', <TeamOutlined/>, [
+            getItem('Tài khoản trường đại học', '6'),
+            getItem('Tài khoản trường cấp 3', '7'),
+        ]),
+        getItem('Quản lý thông tin', '8', <ContainerOutlined/>, [
+            getItem('Thông tin trường đại học', '9'),
+            getItem('Thông tin trường cấp 3', '10'),
+        ]),
+        getItem('Tạo tài khoản đối tác', '11', <UserAddOutlined/>),
+    ]
+    const handleOnChangeRouter = (data) => {
+        const {item, key, keyPath, selectedKeys, domEvent} = data;
+        switch (key) {
+            case '1':
+                navigate(PATH.TAG);
+                break;
+            case '2':
+                navigate(PATH.MAJOR_GROUP);
+                break;
+            case '3':
+                navigate(PATH.MAJOR);
+                break;
+            case '4':
+                navigate(PATH.CERTIFICATE);
+                break;
+            case '6':
+                navigate(PATH.ACCOUNT_UNIVERSITY_REPRESENTATIVES);
+                break;
+            case '7':
+                navigate(PATH.ACCOUNT_HIGH_SCHOOL_REPRESENTATIVES);
+                break;
+            case '9':
+                navigate(PATH.CREATE_UNIVERSITY_PROFILE);
+                break;
+            case '10':
+                navigate(PATH.CREATE_HIGH_SCHOOL_PROFILE);
+                break;
+            case '11':
+                navigate(PATH.ACCOUNT_FIRST_REPRESENTATIVES);
+                break;
+        }
+    }
+    const {Text, Title} = Typography
+    const {user, isAuthUser} = useSelector((state) => state.authentication);
+    const handleSighOut = () => {
+        signOut(auth)
+            .then(() => {
+                navigate(PATH.LOGIN);
+                notification.success({
+                    message: 'Đăng xuất thành công!',
+                    description: `Hẹn gặp lại bạn <3`
+                });
+                dispatch(logoutHandler());
+            })
+            .catch((error) => {
+                // An error happened.
+            });
+    };
+    return (
+        <Layout>
+            <Sider trigger={null} collapsible width={isAuthUser ? 350 : 0}>
+                <div style={{height: '32px', margin: '16px'}}>
+                    <Text strong style={{color: "white"}}>UNI FLAT FORM ADMIN <StarFilled
+                        style={{color: "white"}}/></Text>
+                    {isAuthUser ? <Text style={{color: "white", float: 'right'}}>Xin chào <Text strong
+                                                                                                style={{color: '#FFBE86'}}>{user.roles}</Text>{' '}
+                        <Button type={'primary'} shape={"round"} size={'small'} onClick={() => handleSighOut()}>Đăng
+                            xuất</Button>
+                    </Text> : null}
+                </div>
+                <Menu
+                    mode='inline'
+                    defaultSelectedKeys={['3']}
+                    defaultOpenKeys={['sub1']}
+                    style={{
+                        height: '100%',
+                        borderRight: 0
+                    }}
+                    items={item}
+                    defaultValue={'1'}
+                    onSelect={
+                        handleOnChangeRouter
+                    }
+                />
+            </Sider>
+            <Layout>
+                <Header className="site-layout-sub-header-background" style={{padding: 0}}/>
+                <Content className='site-layout-background' style={{margin: '24px 16px 0'}}>
+                    <div
+                        className="site-layout-background"
+                        style={{
+                            padding: 24,
+                            minHeight: 800,
+                        }}
+                    >
+                        <Routes>
+                            <Route path={PATH.TAG} element={
+                                <AdminRoute>
+                                    <TagPage/>
+                                </AdminRoute>
+                            }/>;
+                            <Route path={PATH.LOGIN} element={<LoginPage/>} exact/>
+                            <Route path={PATH.MAJOR_GROUP} element={
+                                <AdminRoute>
+                                    <MajorGroupPage/>
+                                </AdminRoute>
+                            }/>
+                            <Route path={PATH.MAJOR} element={
+                                <AdminRoute>
+                                    <MajorPage/>
+                                </AdminRoute>
+                            }/>
+                            <Route path={PATH.CERTIFICATE} element={
+                                <AdminRoute>
+                                    <CertificatePage/>
+                                </AdminRoute>
+                            }/>
+                            <Route path={PATH.ACCOUNT_HIGH_SCHOOL_REPRESENTATIVES}
+                                   element={
+                                       <AdminRoute>
+                                           <HighSchoolRepresentativesPage/>
+                                       </AdminRoute>
+                                   }/>
+                            <Route path={PATH.ACCOUNT_UNIVERSITY_REPRESENTATIVES}
+                                   element={
+                                       <AdminRoute>
+                                           <UniversityRepresentativesPage/>
+                                       </AdminRoute>
+                                   }/>
+                            <Route path={PATH.CREATE_HIGH_SCHOOL_PROFILE} element={
+                                <AdminRoute>
+                                    <CreateHighSchoolProfilePage/>
+                                </AdminRoute>
+                            }/>
+                            <Route path={PATH.CREATE_UNIVERSITY_PROFILE} element={
+                                <AdminRoute>
+                                    <CreateUniversityProfilePage/>
+                                </AdminRoute>
+                            }/>
+                            <Route path={PATH.ACCOUNT_FIRST_REPRESENTATIVES} element={
+                                <AdminRoute>
+                                    <FirstRepresentativesPage/>
+                                </AdminRoute>
+                            }/>
+                            <Route path='*' element={<ErrorPage code={404}/>}/>
+                        </Routes>
+                    </div>
+                </Content>
+            </Layout>
+        </Layout>
+    )
+}
 export default AppRouter;

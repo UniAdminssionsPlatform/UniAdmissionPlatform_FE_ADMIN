@@ -13,5 +13,6 @@ export const SigninHandler = (data) => (dispatch) => {
 export const logoutHandler = () => (dispatch) => {
   Cookies.remove(TOKEN_KEY);
   localStorage.removeItem(USER_STORAGE);
+  console.log('action')
   dispatch(authenticationActions.logout());
 };
