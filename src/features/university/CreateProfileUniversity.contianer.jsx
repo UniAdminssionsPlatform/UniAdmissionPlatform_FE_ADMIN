@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
-import CreateProfileUniversityComponent from "./components/CreateProfileUniversity.component";
-import { getListProvinces } from "../../service/ProvinceService.js";
-import { getListDistrictByProvince } from "../../service/DistrictService.js";
-import { createProfile } from "../../service/UniversityService";
+import React, { useEffect, useState } from 'react';
+import CreateProfileUniversityComponent from './components/CreateProfileUniversity.component';
+import { getListProvinces } from '../../service/ProvinceService.js';
+import { getListDistrictByProvince } from '../../service/DistrictService.js';
+import { createProfile } from '../../service/UniversityService';
 import {
   CreateSuccessNotification,
-  handleCreateFailNotification,
-} from "../../notification/CreateProfileUniversityNotification";
+  handleCreateFailNotification
+} from '../../notification/CreateProfileUniversityNotification';
 
 const CreateProfileUniversityContainer = () => {
   const [listProvince, setListProvince] = useState([]);
   const [listDistrict, setListDistrict] = useState([]);
 
-  const [district, setDistrict] = useState("");
-  const [province, setProvince] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
-  const [value, setValue] = useState("");
+  const [district, setDistrict] = useState('');
+  const [province, setProvince] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
+  const [value, setValue] = useState('');
 
   const [isDisableDistrict, setIsDisableDistrict] = useState(true);
   useEffect(() => {

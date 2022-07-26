@@ -1,8 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { USER_STORAGE } from "../../constants/AppConst";
+import { createSlice } from '@reduxjs/toolkit';
+import { USER_STORAGE } from '../../constants/AppConst';
 
 const authenticationSlice = createSlice({
-  name: "authentication",
+  name: 'authentication',
   initialState: {
     data: [],
     dataFetched: false,
@@ -10,14 +10,14 @@ const authenticationSlice = createSlice({
     error: false,
     isAuthUser: !!localStorage.getItem(USER_STORAGE),
     user: JSON.parse(localStorage.getItem(USER_STORAGE)) || {},
-    status: "",
+    status: ''
   },
   reducers: {
     fetchingLogin: (state, action) => {
       state = {
         ...state,
         data: [],
-        isFetching: true,
+        isFetching: true
       };
     },
     fetchingLoginSuccess: (state, action) => {
@@ -28,13 +28,13 @@ const authenticationSlice = createSlice({
         ...state,
         isFetching: false,
         error: true,
-        status: action.data.status,
+        status: action.data.status
       };
     },
     logout: (state) => {
       return { ...state, isAuthUser: false, user: {} };
-    },
-  },
+    }
+  }
 });
 
 export const authenticationActions = authenticationSlice.actions;

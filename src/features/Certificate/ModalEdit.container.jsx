@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
-import ModalEditCertificteConponent from "./Conponents/Modal/ModalEdit.component";
-import {
-  getDetailCertificate,
-  editCertificate,
-} from "../../service/CertificateService";
-import { handleEditNotification } from "../../notification/CertificateNotification";
+import React, { useState, useEffect } from 'react';
+import ModalEditCertificteConponent from './Conponents/Modal/ModalEdit.component';
+import { getDetailCertificate, editCertificate } from '../../service/CertificateService';
+import { handleEditNotification } from '../../notification/CertificateNotification';
 
 const ModalEditCertificateContainer = (props) => {
   const { certificateID, visibleEdit, setVisibleEdit } = props;
@@ -32,18 +29,18 @@ const ModalEditCertificateContainer = (props) => {
   const edit = (data) => {
     editCertificate(data)
       .then((result) => {
-        handleEditNotification("success", result.data.msg);
+        handleEditNotification('success', result.data.msg);
         setTimeout(reload, 2000);
       })
       .catch((err) => {
-        handleEditNotification("error", err.response.data.msg);
+        handleEditNotification('error', err.response.data.msg);
       });
   };
 
   const reload = () => {
     setVisibleEdit(false);
     window.location.reload();
-  }
+  };
 
   const onFinish = (values) => {
     values.id = certificateID;

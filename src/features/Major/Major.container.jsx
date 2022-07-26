@@ -1,12 +1,9 @@
-import { Form, Skeleton } from "antd";
-import React, { useEffect, useState } from "react";
-import {
-  handleDeleteFailNotification,
-  handleDeleteSuccessNotification,
-} from "../../notification/DeleteMajor";
-import MajorComponent from "./Components/Major.component";
-import { DeleteMajor, ListMajor } from "../../service/MajorService";
-import { ListMajorGroup } from "../../service/MajorGroupService";
+import { Form, Skeleton } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { handleDeleteFailNotification, handleDeleteSuccessNotification } from '../../notification/DeleteMajor';
+import MajorComponent from './Components/Major.component';
+import { DeleteMajor, ListMajor } from '../../service/MajorService';
+import { ListMajorGroup } from '../../service/MajorGroupService';
 
 const MajorContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,16 +13,15 @@ const MajorContainer = () => {
   const [majors, setMajors] = useState();
   const [dataSearch, setDataSearch] = useState({
     page: 1,
-    limit: 10,
+    limit: 10
   });
 
   const onChange = (page, limit) => {
     setDataSearch({
       ...dataSearch,
       page,
-      limit,
+      limit
     });
-
   };
 
   const showModal = () => {
@@ -55,12 +51,12 @@ const MajorContainer = () => {
   const handleDelete = (value) => {
     DeleteMajor(value)
       .then((result) => {
-        handleDeleteSuccessNotification("success");
+        handleDeleteSuccessNotification('success');
         getListMajors();
         setIsModalVisible(false);
       })
       .catch((error) => {
-        handleDeleteFailNotification("error");
+        handleDeleteFailNotification('error');
       });
   };
 

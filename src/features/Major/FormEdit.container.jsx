@@ -1,7 +1,7 @@
-import React from "react";
-import { ListMajorGroup } from "../../service/MajorGroupService";
-import { MajorDetail } from "../../service/MajorService";
-import FormEditComponent from "./Components/FormEdit.component";
+import React from 'react';
+import { ListMajorGroup } from '../../service/MajorGroupService';
+import { MajorDetail } from '../../service/MajorService';
+import FormEditComponent from './Components/FormEdit.component';
 
 const FormEditContainer = (props) => {
   const { majorID } = props;

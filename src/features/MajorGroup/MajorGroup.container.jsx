@@ -1,25 +1,16 @@
-import { Form, Skeleton } from "antd";
-import React, { useEffect, useState } from "react";
-import {
-  handleCreateFailNotification,
-  handleCreateSuccessNotification,
-} from "../../notification/CreateMajorGroup";
-import {
-  handleDeleteFailNotification,
-  handleDeleteSuccessNotification,
-} from "../../notification/DeleteMajorGroup";
-import {
-  handleUpdateFailNotification,
-  handleUpdateSuccessNotification,
-} from "../../notification/UpdateMajorGroup";
-import MajorGroupComponent from "./Components/MajorGroup.component";
+import { Form, Skeleton } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { handleCreateFailNotification, handleCreateSuccessNotification } from '../../notification/CreateMajorGroup';
+import { handleDeleteFailNotification, handleDeleteSuccessNotification } from '../../notification/DeleteMajorGroup';
+import { handleUpdateFailNotification, handleUpdateSuccessNotification } from '../../notification/UpdateMajorGroup';
+import MajorGroupComponent from './Components/MajorGroup.component';
 import {
   CreateMajorGroup,
   DeleteMajorGroup,
-   ListMajorGroupPaging,
+  ListMajorGroupPaging,
   MajorGroupDetail,
-  UpdateMajorGroup,
-} from "../../service/MajorGroupService";
+  UpdateMajorGroup
+} from '../../service/MajorGroupService';
 
 const MajorGroupContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,20 +18,20 @@ const MajorGroupContainer = () => {
   const [isModalVisible2, setIsModalVisible2] = useState(false);
   const [form] = Form.useForm();
   const [majorGroup, setMajorGroup] = useState();
-  const [majorGroupDetail, setMajorGroupDetail] = useState("");
+  const [majorGroupDetail, setMajorGroupDetail] = useState('');
   const [imageUrl, setImageUrl] = useState();
-  const [majorGroupID, setMajorGroupID] = useState("");
+  const [majorGroupID, setMajorGroupID] = useState('');
   const [imageUrlEdit, setImageUrlEdit] = useState();
   const [dataSearch, setDataSearch] = useState({
     page: 1,
-    limit: 10,
+    limit: 10
   });
 
   const onChange = (page, limit) => {
     setDataSearch({
       ...dataSearch,
       page,
-      limit,
+      limit
     });
   };
 
@@ -83,11 +74,11 @@ const MajorGroupContainer = () => {
   const edit = (data) => {
     UpdateMajorGroup(data)
       .then((result) => {
-        handleUpdateSuccessNotification("success");
+        handleUpdateSuccessNotification('success');
         setTimeout(reload, 2000);
       })
       .catch((error) => {
-        handleUpdateFailNotification("error");
+        handleUpdateFailNotification('error');
       });
   };
 
@@ -107,12 +98,12 @@ const MajorGroupContainer = () => {
   const handleDelete = (value) => {
     DeleteMajorGroup(value)
       .then((result) => {
-        handleDeleteSuccessNotification("success");
+        handleDeleteSuccessNotification('success');
         setTimeout(reload, 1000);
         setIsModalVisible(false);
       })
       .catch((error) => {
-        handleDeleteFailNotification("error");
+        handleDeleteFailNotification('error');
       });
   };
 
@@ -122,12 +113,12 @@ const MajorGroupContainer = () => {
     form.resetFields();
     CreateMajorGroup(values)
       .then((result) => {
-        handleCreateSuccessNotification("success");
+        handleCreateSuccessNotification('success');
         setTimeout(reload, 1000);
         setIsModalVisible(false);
       })
       .catch((error) => {
-        handleCreateFailNotification("error");
+        handleCreateFailNotification('error');
       });
   };
 
