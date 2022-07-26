@@ -127,7 +127,7 @@
     "yield-star-spacing": "error",
     "no-useless-concat": "warn",
     "no-useless-call": "error",
-    "no-useless-escape": "error",
+    "no-useless-escape": "warn",
     "no-void": "error",
     "wrap-iife": [
       2,
