@@ -22,7 +22,6 @@ const EditModalContainer = (props) => {
 
   const handleChange = (value) => {
     setMajorGroupId(value);
-
     console.log(value);
   };
 
@@ -58,7 +57,7 @@ const EditModalContainer = (props) => {
     values.majorGroupId = majorGroupId;
     console.log(values);
     // setLoading(true);
-    // edit(values);
+    edit(values);
   };
 
   //GET LIST MAJOR GROUP
