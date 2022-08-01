@@ -28,6 +28,7 @@ import MajorPage from '../pages/MajorPage';
 import React, { useState } from 'react';
 import TagPage from '../pages/TagPage';
 import UniversityRepresentativesPage from '../pages/accounts/UniversityRepresentativesPage';
+import SubjectGroupPage from '../pages/SubjectGroupPage';
 
 const AppRouter = () => {
   const { Header, Content, Sider } = Layout;
@@ -56,7 +57,8 @@ const AppRouter = () => {
       getItem('Thông tin trường đại học', '9'),
       getItem('Thông tin trường cấp 3', '10')
     ]),
-    getItem('Tạo tài khoản đối tác', '11', <UserAddOutlined />)
+    getItem('Tạo tài khoản đối tác', '11', <UserAddOutlined />),
+    getItem('Quản lý khối thi', '12', <ApartmentOutlined />)
   ];
   const handleOnChangeRouter = (data) => {
     const { item, key, keyPath, selectedKeys, domEvent } = data;
@@ -87,6 +89,9 @@ const AppRouter = () => {
         break;
       case '11':
         navigate(PATH.ACCOUNT_FIRST_REPRESENTATIVES);
+        break;
+      case '12':
+        navigate(PATH.SUBJECT_GROUP);
         break;
     }
   };
@@ -219,6 +224,14 @@ const AppRouter = () => {
                 element={
                   <AdminRoute>
                     <FirstRepresentativesPage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path={PATH.SUBJECT_GROUP}
+                element={
+                  <AdminRoute>
+                    <SubjectGroupPage />
                   </AdminRoute>
                 }
               />

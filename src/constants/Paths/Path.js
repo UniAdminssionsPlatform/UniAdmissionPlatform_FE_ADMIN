@@ -8,5 +8,6 @@ export const PATH = {
   ACCOUNT_HIGH_SCHOOL_REPRESENTATIVES: '/admin/account/high-school',
   ACCOUNT_UNIVERSITY_REPRESENTATIVES: '/admin/account/university',
   CREATE_HIGH_SCHOOL_PROFILE: '/admin/high-school/profile/create',
-  CREATE_UNIVERSITY_PROFILE: '/admin/university/profile/create'
+  CREATE_UNIVERSITY_PROFILE: '/admin/university/profile/create',
+  SUBJECT_GROUP: '/admin/subject-group'
 };

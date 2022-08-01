@@ -195,7 +195,7 @@ const MajorComponent = (props) => {
           </Form>
           <div>
             <Button type='primary' onClick={showModalCreate} style={{ backgroundColor: 'green' }}>
-              Tạo một thẻ mới
+              Tạo mới Ngành học
             </Button>
           </div>
         </Content>

@@ -1,18 +1,4 @@
-import {
-  Button,
-  Divider,
-  Image,
-  Input,
-  Layout,
-  Modal,
-  Pagination,
-  Skeleton,
-  Space,
-  Switch,
-  Table,
-  Tag,
-  Tooltip
-} from 'antd';
+import { Button, Layout, Modal, Pagination, Skeleton, Table, Tag } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import React from 'react';
 import SearchBar from './SearchBar.component';
