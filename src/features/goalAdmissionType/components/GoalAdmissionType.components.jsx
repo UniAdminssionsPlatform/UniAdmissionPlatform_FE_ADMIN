@@ -5,9 +5,9 @@ import { handleUpdateFailNotificationBlank } from '../../../notification/UpdateT
 import Highlighter from 'react-highlight-words';
 import React, { useRef, useState } from 'react';
 
-const SubjectGroupComponent = (props) => {
+const GoalAdmissionTypeComponent = (props) => {
   const {
-    listSubjectGroup,
+    listGoalAdmisisonType,
     showModal,
     handleOk,
     handleCancel,
@@ -52,7 +52,7 @@ const SubjectGroupComponent = (props) => {
     Modal.confirm({
       title: 'Xác thực',
       icon: <ExclamationCircleOutlined />,
-      content: `Xóa khối ${value.name} ?`,
+      content: `Xóa ${value.name} ?`,
       okText: 'Có',
       cancelText: 'Không',
       onOk() {
@@ -178,7 +178,7 @@ const SubjectGroupComponent = (props) => {
             onClick={() => {
               confirm(record);
             }}>
-            Xóa khối thi
+            Xóa
           </Button>
           <Button
             type='primary'
@@ -197,7 +197,7 @@ const SubjectGroupComponent = (props) => {
   return (
     <>
       <Helmet>
-        <title>Quản lý khối thi</title>
+        <title>Quản lý loại tiêu chí tuyển sinh</title>
       </Helmet>
       <Layout className='layout'>
         <Content
@@ -206,11 +206,11 @@ const SubjectGroupComponent = (props) => {
           }}>
           <div>
             <Button type='primary' onClick={showModal} style={{ backgroundColor: 'green' }}>
-              Tạo một khối thi mới
+              Tạo một loại tiêu chí tuyển sinh mới
             </Button>
             <Modal
               okButtonProps={{
-                form: 'add-subject-group-form',
+                form: 'add-goal-admission-type-form',
                 key: 'submit',
                 htmlType: 'submit'
               }}
@@ -225,7 +225,7 @@ const SubjectGroupComponent = (props) => {
                   remember: false
                 }}
                 onFinish={handleCreate}
-                id='add-subject-group-form'
+                id='add-goal-admission-type-form'
                 name='basic'
                 autoComplete='off'
                 layout='vertical'>
@@ -247,14 +247,19 @@ const SubjectGroupComponent = (props) => {
             <>
               <Table
                 columns={columns}
-                dataSource={listSubjectGroup?.list}
+                dataSource={listGoalAdmisisonType?.list}
                 pagination={false}
                 bordered
                 style={{ width: '100vw' }}
                 scroll={{ x: 600, y: 544 }}
               />
               <div style={stylePaging}>
-                <Pagination total={listSubjectGroup.total} onChange={onChange} showSizeChanger={false} pageSize={5} />
+                <Pagination
+                  total={listGoalAdmisisonType.total}
+                  onChange={onChange}
+                  showSizeChanger={false}
+                  pageSize={5}
+                />
               </div>
             </>
           </Form>
@@ -264,4 +269,4 @@ const SubjectGroupComponent = (props) => {
   );
 };
 
-export default SubjectGroupComponent;
+export default GoalAdmissionTypeComponent;

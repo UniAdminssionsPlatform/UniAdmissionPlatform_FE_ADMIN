@@ -1,19 +1,19 @@
 import { Form, Skeleton } from 'antd';
 import {
-  createSubjectGroup,
-  deleteSubjectGroup,
-  getListSubjectGroup,
-  updateSubjectGroup
-} from '../../service/SubjectGroupService';
+  getListGoalAdmissionType,
+  createGoalAdmissionType,
+  updateGoalAdmissionType,
+  deleteGoalAdmissionType
+} from '../../service/GoalAdmissionTypeService';
 import {
   handleCreateNotification,
   handleDeleteNotification,
   handleUpdateNotification
 } from '../../notification/SubjectGroupNotification';
+import GoalAdmissionTypeComponent from './components/GoalAdmissionType.components';
 import React, { useEffect, useState } from 'react';
-import SubjectGroupComponent from './components/SubjectGroup.component';
 
-const SubjectGroupContainer = () => {
+const GoalAdmissionTypeContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
@@ -22,7 +22,7 @@ const SubjectGroupContainer = () => {
     page: 1,
     limit: 5
   });
-  const [listSubjectGroup, setListSubjectGroup] = useState();
+  const [listGoalAdmisisonType, setListGoalAdmisisonType] = useState();
 
   const onChange = (page) => {
     setDataSearch({
@@ -50,7 +50,7 @@ const SubjectGroupContainer = () => {
         name: request.data
       }
     };
-    updateSubjectGroup(requestUpdate)
+    updateGoalAdmissionType(requestUpdate)
       .then((result) => {
         handleUpdateNotification('success');
         window.location.reload();
@@ -68,7 +68,7 @@ const SubjectGroupContainer = () => {
 
   //DELETE TAG
   const handleDelete = (value) => {
-    deleteSubjectGroup(value.id)
+    deleteGoalAdmissionType(value.id)
       .then((result) => {
         handleDeleteNotification('success');
         loadData({
@@ -87,7 +87,7 @@ const SubjectGroupContainer = () => {
   const handleCreate = (values) => {
     form.resetFields();
 
-    createSubjectGroup(values)
+    createGoalAdmissionType(values)
       .then((result) => {
         handleCreateNotification('success');
         loadData({
@@ -113,8 +113,8 @@ const SubjectGroupContainer = () => {
   }, [dataSearch]);
 
   const loadData = (value) => {
-    getListSubjectGroup(value).then((result) => {
-      setListSubjectGroup(result.data.data);
+    getListGoalAdmissionType(value).then((result) => {
+      setListGoalAdmisisonType(result.data.data);
       setIsLoading(false);
     });
   };
@@ -124,8 +124,8 @@ const SubjectGroupContainer = () => {
       {isLoading ? (
         <Skeleton active />
       ) : (
-        <SubjectGroupComponent
-          listSubjectGroup={listSubjectGroup}
+        <GoalAdmissionTypeComponent
+          listGoalAdmisisonType={listGoalAdmisisonType}
           handleCreate={handleCreate}
           handleDelete={handleDelete}
           showModal={showModal}
@@ -141,4 +141,4 @@ const SubjectGroupContainer = () => {
   );
 };
 
-export default SubjectGroupContainer;
+export default GoalAdmissionTypeContainer;

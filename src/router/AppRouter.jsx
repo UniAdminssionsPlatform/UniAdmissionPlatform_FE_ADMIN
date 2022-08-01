@@ -2,6 +2,7 @@ import './Layout.module.css';
 import {
   ApartmentOutlined,
   ContainerOutlined,
+  SafetyCertificateOutlined,
   StarFilled,
   StarOutlined,
   TagsFilled,
@@ -21,14 +22,15 @@ import CreateHighSchoolProfilePage from '../pages/highSchool/CreateHighSchoolPro
 import CreateUniversityProfilePage from '../pages/university/CreateUniversityProfilePage';
 import ErrorPage from '../pages/ErrorPage';
 import FirstRepresentativesPage from '../pages/accounts/FirstRepresentativesPage';
+import GoalAdmissionTypePage from '../pages/GoalAdmissionTypePage';
 import HighSchoolRepresentativesPage from '../pages/accounts/HighSchoolRepresentativesPage';
 import LoginPage from '../pages/LoginPage';
 import MajorGroupPage from '../pages/MajorGroupPage';
 import MajorPage from '../pages/MajorPage';
 import React, { useState } from 'react';
+import SubjectGroupPage from '../pages/SubjectGroupPage';
 import TagPage from '../pages/TagPage';
 import UniversityRepresentativesPage from '../pages/accounts/UniversityRepresentativesPage';
-import SubjectGroupPage from '../pages/SubjectGroupPage';
 
 const AppRouter = () => {
   const { Header, Content, Sider } = Layout;
@@ -58,7 +60,8 @@ const AppRouter = () => {
       getItem('Thông tin trường cấp 3', '10')
     ]),
     getItem('Tạo tài khoản đối tác', '11', <UserAddOutlined />),
-    getItem('Quản lý khối thi', '12', <ApartmentOutlined />)
+    getItem('Quản lý khối thi', '12', <ApartmentOutlined />),
+    getItem('Quản lý loại tiêu chí tuyển sinh', '13', <SafetyCertificateOutlined />)
   ];
   const handleOnChangeRouter = (data) => {
     const { item, key, keyPath, selectedKeys, domEvent } = data;
@@ -92,6 +95,9 @@ const AppRouter = () => {
         break;
       case '12':
         navigate(PATH.SUBJECT_GROUP);
+        break;
+      case '13':
+        navigate(PATH.GOAL_ADMISSION_TYPE);
         break;
     }
   };
@@ -232,6 +238,14 @@ const AppRouter = () => {
                 element={
                   <AdminRoute>
                     <SubjectGroupPage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path={PATH.GOAL_ADMISSION_TYPE}
+                element={
+                  <AdminRoute>
+                    <GoalAdmissionTypePage />
                   </AdminRoute>
                 }
               />
