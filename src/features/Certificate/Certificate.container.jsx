@@ -18,7 +18,7 @@ const CertificateContainer = () => {
     getListCertificate()
       .then((result) => {
         setListCertificate(result.data.data.list);
-        handleGetListNotification('success');
+
         setLoading(false);
       })
       .catch((error) => {

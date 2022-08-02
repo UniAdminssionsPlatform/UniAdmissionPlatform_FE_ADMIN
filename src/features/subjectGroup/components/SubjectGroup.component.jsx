@@ -178,7 +178,7 @@ const SubjectGroupComponent = (props) => {
             onClick={() => {
               confirm(record);
             }}>
-            Xóa khối thi
+            Xóa
           </Button>
           <Button
             type='primary'

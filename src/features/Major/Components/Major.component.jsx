@@ -34,8 +34,6 @@ const MajorComponent = (props) => {
     paddingLeft: 80
   };
 
-  console.log(majors);
-
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
