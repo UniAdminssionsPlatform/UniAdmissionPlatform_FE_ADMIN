@@ -10,5 +10,6 @@ export const PATH = {
   CREATE_HIGH_SCHOOL_PROFILE: '/admin/high-school/profile/create',
   CREATE_UNIVERSITY_PROFILE: '/admin/university/profile/create',
   SUBJECT_GROUP: '/admin/subject-group',
-  GOAL_ADMISSION_TYPE: '/admin/goal-admission-type'
+  GOAL_ADMISSION_TYPE: '/admin/goal-admission-type',
+  SUBJECT: '/admin/subject'
 };

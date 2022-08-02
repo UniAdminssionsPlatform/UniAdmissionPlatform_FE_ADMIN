@@ -7,7 +7,8 @@ import {
   StarOutlined,
   TagsFilled,
   TeamOutlined,
-  UserAddOutlined
+  UserAddOutlined,
+  InboxOutlined
 } from '@ant-design/icons';
 import { Button, Layout, Menu, Typography, notification } from 'antd';
 import { PATH } from '../constants/Paths/Path';
@@ -31,6 +32,7 @@ import React, { useState } from 'react';
 import SubjectGroupPage from '../pages/SubjectGroupPage';
 import TagPage from '../pages/TagPage';
 import UniversityRepresentativesPage from '../pages/accounts/UniversityRepresentativesPage';
+import SubjectPage from '../pages/SubjectPage';
 
 const AppRouter = () => {
   const { Header, Content, Sider } = Layout;
@@ -61,7 +63,8 @@ const AppRouter = () => {
     ]),
     getItem('Tạo tài khoản đối tác', '11', <UserAddOutlined />),
     getItem('Quản lý khối thi', '12', <ApartmentOutlined />),
-    getItem('Quản lý loại tiêu chí tuyển sinh', '13', <SafetyCertificateOutlined />)
+    getItem('Quản lý loại tiêu chí tuyển sinh', '13', <SafetyCertificateOutlined />),
+    getItem('Quản lý môn học', '14', <InboxOutlined />)
   ];
   const handleOnChangeRouter = (data) => {
     const { item, key, keyPath, selectedKeys, domEvent } = data;
@@ -98,6 +101,9 @@ const AppRouter = () => {
         break;
       case '13':
         navigate(PATH.GOAL_ADMISSION_TYPE);
+        break;
+      case '14':
+        navigate(PATH.SUBJECT);
         break;
     }
   };
@@ -246,6 +252,14 @@ const AppRouter = () => {
                 element={
                   <AdminRoute>
                     <GoalAdmissionTypePage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path={PATH.SUBJECT}
+                element={
+                  <AdminRoute>
+                    <SubjectPage />
                   </AdminRoute>
                 }
               />
