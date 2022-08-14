@@ -224,7 +224,7 @@ const CreateProfileUniversityComponent = (props) => {
           <Col span={10}>
             <br />
             <Button className='md:col-span-2' htmlType='submit' type='primary' style={{ borderRadius: 10 }}>
-              Cập Nhật
+              Tạo mới
             </Button>
           </Col>
         </Row>

@@ -2,11 +2,13 @@ import './Layout.module.css';
 import {
   ApartmentOutlined,
   ContainerOutlined,
+  SafetyCertificateOutlined,
   StarFilled,
   StarOutlined,
   TagsFilled,
   TeamOutlined,
-  UserAddOutlined
+  UserAddOutlined,
+  InboxOutlined
 } from '@ant-design/icons';
 import { Button, Layout, Menu, Typography, notification } from 'antd';
 import { PATH } from '../constants/Paths/Path';
@@ -21,13 +23,16 @@ import CreateHighSchoolProfilePage from '../pages/highSchool/CreateHighSchoolPro
 import CreateUniversityProfilePage from '../pages/university/CreateUniversityProfilePage';
 import ErrorPage from '../pages/ErrorPage';
 import FirstRepresentativesPage from '../pages/accounts/FirstRepresentativesPage';
+import GoalAdmissionTypePage from '../pages/GoalAdmissionTypePage';
 import HighSchoolRepresentativesPage from '../pages/accounts/HighSchoolRepresentativesPage';
 import LoginPage from '../pages/LoginPage';
 import MajorGroupPage from '../pages/MajorGroupPage';
 import MajorPage from '../pages/MajorPage';
 import React, { useState } from 'react';
+import SubjectGroupPage from '../pages/SubjectGroupPage';
 import TagPage from '../pages/TagPage';
 import UniversityRepresentativesPage from '../pages/accounts/UniversityRepresentativesPage';
+import SubjectPage from '../pages/SubjectPage';
 
 const AppRouter = () => {
   const { Header, Content, Sider } = Layout;
@@ -56,7 +61,10 @@ const AppRouter = () => {
       getItem('Thông tin trường đại học', '9'),
       getItem('Thông tin trường cấp 3', '10')
     ]),
-    getItem('Tạo tài khoản đối tác', '11', <UserAddOutlined />)
+    getItem('Tạo tài khoản đối tác', '11', <UserAddOutlined />),
+    getItem('Quản lý khối thi', '12', <ApartmentOutlined />),
+    getItem('Quản lý loại tiêu chí tuyển sinh', '13', <SafetyCertificateOutlined />),
+    getItem('Quản lý môn học', '14', <InboxOutlined />)
   ];
   const handleOnChangeRouter = (data) => {
     const { item, key, keyPath, selectedKeys, domEvent } = data;
@@ -87,6 +95,15 @@ const AppRouter = () => {
         break;
       case '11':
         navigate(PATH.ACCOUNT_FIRST_REPRESENTATIVES);
+        break;
+      case '12':
+        navigate(PATH.SUBJECT_GROUP);
+        break;
+      case '13':
+        navigate(PATH.GOAL_ADMISSION_TYPE);
+        break;
+      case '14':
+        navigate(PATH.SUBJECT);
         break;
     }
   };
@@ -219,6 +236,30 @@ const AppRouter = () => {
                 element={
                   <AdminRoute>
                     <FirstRepresentativesPage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path={PATH.SUBJECT_GROUP}
+                element={
+                  <AdminRoute>
+                    <SubjectGroupPage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path={PATH.GOAL_ADMISSION_TYPE}
+                element={
+                  <AdminRoute>
+                    <GoalAdmissionTypePage />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path={PATH.SUBJECT}
+                element={
+                  <AdminRoute>
+                    <SubjectPage />
                   </AdminRoute>
                 }
               />
