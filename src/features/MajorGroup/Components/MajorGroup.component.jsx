@@ -167,7 +167,7 @@ const MajorGroupComponent = (props) => {
       dataIndex: 'thumbnailUrl',
       key: 'name',
       width: '4%',
-      render: (_, { thumbnailUrl }) => <Image width={330} src={thumbnailUrl} preview={false} />
+      render: (_, { thumbnailUrl }) => <Image width={260} src={thumbnailUrl} preview={false} />
     },
     {
       title: 'Tên',
