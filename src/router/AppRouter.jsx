@@ -61,7 +61,6 @@ const AppRouter = () => {
       getItem('Thông tin trường đại học', '9'),
       getItem('Thông tin trường cấp 3', '10')
     ]),
-    getItem('Tạo tài khoản đối tác', '11', <UserAddOutlined />),
     getItem('Quản lý khối thi', '12', <ApartmentOutlined />),
     getItem('Quản lý loại tiêu chí tuyển sinh', '13', <SafetyCertificateOutlined />),
     getItem('Quản lý môn học', '14', <InboxOutlined />)
