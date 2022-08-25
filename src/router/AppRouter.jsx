@@ -55,12 +55,14 @@ const AppRouter = () => {
     getItem('Quản lý Chứng chỉ', '4', <StarOutlined />),
     getItem('Quản lý Tài khoản', '5', <TeamOutlined />, [
       getItem('Tài khoản trường đại học', '6'),
-      getItem('Tài khoản trường cấp 3', '7')
+      getItem('Tài khoản trường cấp 3', '7'),
+      getItem('Xét duyệt tài khoản', '11')
     ]),
     getItem('Quản lý thông tin', '8', <ContainerOutlined />, [
       getItem('Thông tin trường đại học', '9'),
       getItem('Thông tin trường cấp 3', '10')
     ]),
+
     getItem('Quản lý khối thi', '12', <ApartmentOutlined />),
     getItem('Quản lý loại tiêu chí tuyển sinh', '13', <SafetyCertificateOutlined />),
     getItem('Quản lý môn học', '14', <InboxOutlined />)

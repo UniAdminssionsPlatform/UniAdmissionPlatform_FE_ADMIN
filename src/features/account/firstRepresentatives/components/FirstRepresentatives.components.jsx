@@ -60,7 +60,7 @@ const FirstRepresentativesComponent = (props) => {
     Modal.confirm({
       title: 'Xác thực',
       icon: <ExclamationCircleOutlined />,
-      content: `Duyệt tài khoản cho ${value.lastName} ${value.middleName} ${value.firstName} ?`,
+      content: `Duyệt tài khoản cho ${value.firstName} ?`,
       okText: 'Có',
       cancelText: 'Không',
       onOk() {
